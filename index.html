@@ -1,0 +1,530 @@
+export default function GuidingStepsABAHomepage() {
+  const nav = [
+    { label: "How it works", href: "#how-it-works" },
+    { label: "Questions", href: "#questions" },
+    { label: "About", href: "#about" },
+    { label: "Book", href: "#booking" },
+  ];
+
+  const steps = [
+    {
+      number: "01",
+      title: "Start with clarity",
+      body: "We explain ABA in plain English, learn about your child and family, and help you understand what matters before you call a single provider.",
+    },
+    {
+      number: "02",
+      title: "Know what to ask",
+      body: "You get practical questions, red flags to watch for, and guidance on how to compare providers without getting lost in the process.",
+    },
+    {
+      number: "03",
+      title: "Choose with support",
+      body: "We can review your options, help you evaluate fit, and even join early calls or meetings so you do not have to do it alone.",
+    },
+  ];
+
+  const offerings = [
+    {
+      title: "Navigation Call",
+      text: "A focused call to understand your situation, explain the process, and map your next best steps.",
+    },
+    {
+      title: "Provider Fit Support",
+      text: "Help comparing providers, reviewing answers, and identifying the best fit for your child and family.",
+    },
+    {
+      title: "Meeting Advocacy",
+      text: "Hands-on support during intake calls, meetings, and early onboarding so you feel prepared and represented.",
+    },
+  ];
+
+  const providerQuestions = [
+    "What happens if an RBT does not show up to session?",
+    "How many clients does each BCBA oversee?",
+    "Are sessions led by an RBT, a BCBA, or both?",
+    "How much parent involvement is expected?",
+    "Do you prioritize assent and reinforcement-based care?",
+    "Do you offer make-up days?",
+    "Can services happen in home, clinic, school, or community settings?",
+    "Do you support collaboration with OT and speech?",
+    "Can you work on daily living skills?",
+  ];
+
+  const familyQuestions = [
+    "What do I need to do to get started?",
+    "What will my child be doing all day?",
+    "How many hours are appropriate?",
+    "How many therapists will work with my child?",
+    "What happens if we go on vacation?",
+    "Should we choose home, clinic, school, or community services?",
+    "What can ABA help with and what can it not do?",
+    "What is the purpose of ABA?",
+    "Can ABA be applied across the lifespan?",
+  ];
+
+  const faqs = [
+    {
+      q: "Who is this for?",
+      a: "Families who are new to ABA, overwhelmed by provider options, or unsure whether their current fit is the right one.",
+    },
+    {
+      q: "Do you provide direct ABA therapy?",
+      a: "Guiding Steps ABA is focused on education, advocacy, and helping families navigate the process of finding the right provider and support plan.",
+    },
+    {
+      q: "Can you join provider calls with us?",
+      a: "Yes. That is one of the most valuable parts of the service for many families, especially in the early stages.",
+    },
+    {
+      q: "What if we already have a provider?",
+      a: "We can still help you ask better questions, evaluate fit, and prepare for transitions or new decisions.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "We had no idea where to start. Every provider sounded the same, and we were scared of choosing wrong. After one call, everything felt clearer.",
+      author: "Parent, Austin TX",
+    },
+    {
+      quote:
+        "Having someone on our side during provider calls changed everything. Questions we would have never thought to ask were brought up.",
+      author: "Parent",
+    },
+    {
+      quote:
+        "Before this, we felt overwhelmed and unsure. After working together, we felt confident in our decision.",
+      author: "Parent of a 5-year-old",
+    },
+  ];
+
+  const doodles = {
+    squiggleBlue: "M4 16C44 7 83 5 122 8C161 11 194 14 226 20",
+    squiggleRed: "M6 19C43 6 76 4 113 7C152 10 186 12 216 16",
+    circle: "M48 7C26 8 8 28 8 51C8 74 27 93 50 94C73 94 92 75 92 52C92 29 71 6 48 7Z",
+    star: "M50 10L58 37L86 37L63 54L71 82L50 65L29 82L37 54L14 37L42 37L50 10Z",
+    arrow: "M6 38C53 8 102 5 158 23C168 26 179 31 191 38M167 17L192 38L162 44",
+  };
+
+  const SectionEyebrow = ({ children }) => (
+    <div className="mb-5 flex items-center gap-3">
+      <svg className="h-8 w-24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d={doodles.squiggleBlue} stroke="#2f6df6" strokeWidth="6" strokeLinecap="round" />
+      </svg>
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">{children}</p>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-[#dcecff] text-slate-900 [font-family:Inter,ui-sans-serif,system-ui,sans-serif]">
+      <div className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl rounded-[1.4rem] border border-black/10 bg-white/75 px-3 py-3 shadow-lg backdrop-blur-xl sm:rounded-full sm:px-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                G
+              </div>
+              <div>
+                <p className="text-sm font-semibold">Guiding Steps ABA</p>
+                <p className="text-xs text-slate-500">Helping families choose the right ABA care</p>
+              </div>
+            </div>
+
+            <div className="hidden items-center gap-6 lg:flex">
+              {nav.map((item) => (
+                <a key={item.label} href={item.href} className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
+                  {item.label}
+                </a>
+              ))}
+            </div>
+
+            <a
+              href="#booking"
+              className="rounded-full bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:px-4 sm:text-sm"
+            >
+              Book a call
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <section className="relative overflow-hidden px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
+        <div className="absolute left-[-5%] top-0 h-72 w-72 rounded-full bg-[#ffd768] opacity-65 blur-3xl" />
+        <div className="absolute right-[-2%] top-16 h-80 w-80 rounded-full bg-[#ff8c7a] opacity-30 blur-3xl" />
+        <div className="absolute left-[30%] top-[20%] h-80 w-80 rounded-full bg-[#7cc7ff] opacity-35 blur-3xl" />
+
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur">
+              <span className="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500" />
+              Led by a BCBA with 7+ years of experience
+            </div>
+
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[0.98] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl [font-family:Georgia,serif]">
+              Choosing ABA care for your child should feel <span className="relative inline-block">guided
+                <svg className="absolute -bottom-3 left-0 w-full" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d={doodles.squiggleBlue} stroke="#2f6df6" strokeWidth="6" strokeLinecap="round" />
+                </svg>
+              </span>, not overwhelming.
+            </h1>
+
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8">
+              Guiding Steps ABA helps families understand the process, ask the right questions, and choose care with more confidence. Not just the first provider with an opening. The right fit for your child.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a
+                href="#booking"
+                className="rounded-full bg-slate-900 px-6 py-3 text-center text-sm font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:shadow-2xl"
+              >
+                Book an Intro Call
+              </a>
+              <a
+                href="#how-it-works"
+                className="rounded-full border border-black/10 bg-white/80 px-6 py-3 text-center text-sm font-semibold text-slate-900 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-xl"
+              >
+                See How It Works
+              </a>
+            </div>
+
+            <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+              {[
+                "Plain-English guidance",
+                "Provider comparison support",
+                "Meeting advocacy",
+              ].map((item, index) => (
+                <div key={item} className="relative rounded-[1.5rem] border border-black/10 bg-white/78 p-4 text-sm font-medium shadow-sm backdrop-blur">
+                  {index === 0 && (
+                    <svg className="absolute -left-2 -top-2 h-8 w-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d={doodles.circle} fill="#ffd768" stroke="#111827" strokeWidth="3" />
+                    </svg>
+                  )}
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative flex items-center justify-center">
+            <svg className="absolute -left-4 top-10 h-20 w-20 rotate-[-8deg]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d={doodles.star} fill="#ffd768" stroke="#111827" strokeWidth="3" />
+            </svg>
+            <svg className="absolute bottom-10 right-0 h-16 w-36 rotate-[6deg]" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d={doodles.squiggleRed} stroke="#ff6f61" strokeWidth="6" strokeLinecap="round" />
+            </svg>
+
+            <div className="w-full max-w-md rounded-[2rem] border border-black/10 bg-white/80 p-3 shadow-2xl backdrop-blur-xl sm:rounded-[2.2rem] sm:p-4">
+              <div className="rounded-[1.5rem] border border-black/10 bg-[#f8fbff] p-4 sm:rounded-[1.8rem] sm:p-5">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-sm text-slate-500">Parent Support Plan</p>
+                    <h3 className="text-xl font-semibold sm:text-2xl">Your next step</h3>
+                  </div>
+                  <div className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                    Calm and clear
+                  </div>
+                </div>
+
+                <div className="mt-5 rounded-[1.35rem] bg-white p-4 shadow-sm sm:rounded-[1.75rem]">
+                  <p className="text-sm text-slate-500">What we help with</p>
+                  <div className="mt-3 space-y-3">
+                    {[
+                      "Understand the ABA process",
+                      "Know what to ask providers",
+                      "Spot red flags early",
+                      "Get support in first meetings",
+                    ].map((line) => (
+                      <div key={line} className="flex items-center gap-3 rounded-2xl bg-blue-50 px-3 py-3 text-sm font-medium text-slate-900">
+                        <div className="h-2.5 w-2.5 rounded-full bg-blue-600" />
+                        {line}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-[1.75rem] bg-slate-900 p-5 text-white shadow-sm">
+                  <p className="text-sm text-white/70">What parents need most</p>
+                  <div className="mt-4 space-y-4">
+                    {[
+                      ["Confidence choosing a provider", "92%", "92%"],
+                      ["Help asking the right questions", "88%", "88%"],
+                      ["Support in early meetings", "81%", "81%"],
+                    ].map(([label, value, width]) => (
+                      <div key={label}>
+                        <div className="flex justify-between text-sm">
+                          <span>{label}</span>
+                          <span>{value}</span>
+                        </div>
+                        <div className="mt-2 h-3 rounded-full bg-white/10">
+                          <div className="h-3 rounded-full bg-white" style={{ width }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="mt-4 text-center text-xs leading-5 text-slate-500">
+                  Replace these with your real proof points, testimonials, or trust indicators.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <SectionEyebrow>How it works</SectionEyebrow>
+        <div className="grid gap-4 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <div key={step.title} className="relative rounded-[1.6rem] border border-black/10 bg-white/80 p-5 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:rounded-[2rem] sm:p-6">
+              {index === 1 && (
+                <svg className="absolute right-4 top-4 h-10 w-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d={doodles.circle} fill="#ffd768" stroke="#111827" strokeWidth="3" />
+                </svg>
+              )}
+              <p className="text-sm font-semibold tracking-[0.16em] text-slate-400">{step.number}</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight">{step.title}</h3>
+              <p className="mt-3 text-base leading-7 text-slate-700">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <div className="rounded-[1.8rem] border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:p-8">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">Why families come to us</p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
+            Because this is a big decision, and it should not feel like guesswork.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+            ABA has its own language, its own process, and its own blind spots. When you are hearing these terms for the first time, it is easy to feel rushed into choosing whatever opens up first. Guiding Steps ABA helps families slow down, ask better questions, and make a decision that truly fits their child.
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {offerings.map((item, idx) => (
+              <div key={item.title} className="relative rounded-[1.4rem] bg-[#f8fbff] p-4 shadow-inner transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:rounded-[1.75rem] sm:p-5">
+                {idx === 2 && (
+                  <svg className="absolute -right-2 -top-2 h-10 w-10 rotate-[10deg]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d={doodles.star} fill="#ff8c7a" stroke="#111827" strokeWidth="3" />
+                  </svg>
+                )}
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[2.25rem] border border-black/10 bg-slate-900 p-8 text-white shadow-xl">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/55">Common parent questions</p>
+          <div className="mt-5 space-y-3">
+            {[
+              "I have no idea where to start.",
+              "How do I know which provider is actually a good fit?",
+              "What questions should I ask on the first call?",
+              "What happens if staff keep changing or no one shows up?",
+              "Can ABA work with OT, speech, school, and daily living goals?",
+            ].map((item) => (
+              <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-6 text-white/90">
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 rounded-3xl bg-white/10 p-5">
+            <p className="text-base font-medium">You should not have to figure this out alone.</p>
+            <p className="mt-2 text-sm leading-6 text-white/70">
+              The right support can help you feel less overwhelmed, ask better questions, and move forward with more confidence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="questions" className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mb-5 flex items-center gap-3">
+          <svg className="h-8 w-24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d={doodles.squiggleRed} stroke="#ff6f61" strokeWidth="6" strokeLinecap="round" />
+          </svg>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Questions that matter</p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-[1.8rem] border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:p-8">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions to ask providers</h2>
+            <div className="mt-6 grid gap-3">
+              {providerQuestions.map((item) => (
+                <div key={item} className="rounded-2xl bg-[#f8fbff] px-4 py-4 text-sm leading-6 text-slate-800">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[1.8rem] border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:p-8">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions families often have</h2>
+            <div className="mt-6 grid gap-3">
+              {familyQuestions.map((item) => (
+                <div key={item} className="rounded-2xl bg-[#f8fbff] px-4 py-4 text-sm leading-6 text-slate-800">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="rounded-[2rem] border border-black/10 bg-white/82 p-6 shadow-xl backdrop-blur sm:rounded-[2.5rem] sm:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <SectionEyebrow>About your guide</SectionEyebrow>
+              <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
+                Hi, I’m [Her Name].
+              </h2>
+              <div className="mt-5 space-y-4 text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+                <p>
+                  I’m a Board Certified Behavior Analyst with over 7 years of experience working with children and families across home, clinic, and community settings.
+                </p>
+                <p>
+                  I’ve seen firsthand how overwhelming it can feel for parents trying to navigate ABA for the first time. There are a lot of options, a lot of terminology, and not always a lot of clarity.
+                </p>
+                <p>
+                  I started Guiding Steps ABA to help families feel more informed, more confident, and more supported when making decisions about their child’s care.
+                </p>
+                <p>
+                  My goal is simple: help you understand what you’re hearing, know what to ask, and feel confident in the path you choose.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative rounded-[1.6rem] bg-blue-100 p-5 shadow-inner sm:rounded-[2rem] sm:p-6">
+              <svg className="absolute -left-3 -top-3 h-10 w-10 rotate-[-12deg]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d={doodles.star} fill="#ffd768" stroke="#111827" strokeWidth="3" />
+              </svg>
+              <div className="rounded-[1.25rem] bg-white p-5 shadow-sm sm:rounded-[1.5rem] sm:p-6">
+                <div className="aspect-[4/4.5] rounded-[1.25rem] border border-dashed border-black/15 bg-[linear-gradient(135deg,#f5f9ff,#e7f1ff)]" />
+                <p className="mt-4 text-sm text-slate-500">
+                  Add her photo here, plus credentials, service area, and a short note about the settings she has worked in.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="rounded-[2.5rem] border border-black/10 bg-white/82 p-8 shadow-xl backdrop-blur sm:p-10">
+          <div className="mb-6 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+              Most parents do not realize what to look for until it is too late. We help you get it right the first time.
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {testimonials.map((item, index) => (
+              <div key={index} className="rounded-[1.45rem] bg-[#f8fbff] p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:rounded-[1.8rem] sm:p-6">
+                <p className="text-lg leading-8 text-slate-800">“{item.quote}”</p>
+                <p className="mt-5 text-sm font-medium text-slate-500">— {item.author}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
+          <div className="rounded-[2.25rem] border border-black/10 bg-white/80 p-8 shadow-sm">
+            <SectionEyebrow>Frequently asked questions</SectionEyebrow>
+            <div className="space-y-4">
+              {faqs.map((item) => (
+                <div key={item.q} className="rounded-[1.35rem] bg-[#f8fbff] p-5 transition duration-300 hover:shadow-md sm:rounded-[1.5rem]">
+                  <h3 className="text-lg font-semibold">{item.q}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative rounded-[1.8rem] border border-black/10 bg-[#fff7e2] p-6 shadow-sm sm:rounded-[2.25rem] sm:p-8">
+            <svg className="absolute right-6 top-6 h-16 w-24" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d={doodles.arrow} stroke="#111827" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">What happens next</p>
+            <h2 className="mt-3 max-w-md text-3xl font-semibold tracking-tight">A simple booking flow that feels easy.</h2>
+            <div className="mt-6 space-y-4">
+              {[
+                "Book your intro call",
+                "Share where you are in the process",
+                "Get clarity on your next best step",
+                "Move forward with guidance and support",
+              ].map((item, index) => (
+                <div key={item} className="flex items-start gap-4 rounded-[1.4rem] bg-white px-4 py-4 shadow-sm">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                    {index + 1}
+                  </div>
+                  <p className="pt-1 text-sm font-medium text-slate-800">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="booking" className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-slate-900 p-6 text-white shadow-2xl sm:rounded-[2.5rem] sm:p-12">
+          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-600 opacity-30 blur-3xl" />
+          <div className="absolute -bottom-16 left-8 h-40 w-40 rounded-full bg-yellow-300 opacity-20 blur-3xl" />
+
+          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/55">Booking</p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
+                Start with one calm, clear conversation.
+              </h2>
+              <p className="mt-5 max-w-2xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
+                Book an intro call to talk through your situation, your child’s needs, and the next best step. From there, we can help you prepare, compare providers, and move forward with more confidence.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3 text-sm text-white/75">
+                {[
+                  "Intro call",
+                  "Provider fit support",
+                  "Meeting advocacy",
+                ].map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.6rem] bg-white p-5 text-slate-900 shadow-xl sm:rounded-[2rem] sm:p-6">
+              <p className="text-sm text-slate-500">Book your call</p>
+              <form className="mt-4 space-y-3">
+                <input className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl" placeholder="Parent name" />
+                <input className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl" placeholder="Email address" />
+                <input className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl" placeholder="Phone number" />
+                <select className="w-full rounded-xl border border-black/10 px-4 py-3 text-slate-600 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl">
+                  <option>What support do you need?</option>
+                  <option>Learning the ABA process</option>
+                  <option>Choosing between providers</option>
+                  <option>Joining intake calls or meetings</option>
+                </select>
+                <textarea
+                  className="min-h-[120px] w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl"
+                  placeholder="Tell us a little about your child and where you are in the process"
+                />
+                <button className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:rounded-2xl">
+                  Request an Intro Call
+                </button>
+              </form>
+              <p className="mt-3 text-xs leading-5 text-slate-500">
+                Replace this form with Calendly, Tally, Typeform, or your preferred booking software.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
