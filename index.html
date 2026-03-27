@@ -86,10 +86,55 @@ function ShimmerButton({ href, children, dark = true }) {
   );
 }
 
+function PriceCard({ title, price, description, bullets, featured = false, badge }) {
+  return (
+    <div
+      className={`relative rounded-[1.8rem] border p-6 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-7 ${
+        featured
+          ? "border-slate-900 bg-slate-900 text-white"
+          : "border-black/10 bg-white/80 text-slate-900"
+      }`}
+    >
+      {badge && (
+        <div
+          className={`absolute right-5 top-5 rounded-full px-3 py-1 text-xs font-semibold ${
+            featured ? "bg-white text-slate-900" : "bg-blue-100 text-blue-700"
+          }`}
+        >
+          {badge}
+        </div>
+      )}
+      <p className={`text-sm font-medium uppercase tracking-[0.16em] ${featured ? "text-white/60" : "text-slate-500"}`}>
+        {title}
+      </p>
+      <div className="mt-4 flex items-end gap-2">
+        <span className="text-4xl font-semibold tracking-tight">{price}</span>
+      </div>
+      <p className={`mt-4 text-sm leading-7 ${featured ? "text-white/80" : "text-slate-600"}`}>
+        {description}
+      </p>
+      <div className="mt-6 space-y-3">
+        {bullets.map((bullet) => (
+          <div
+            key={bullet}
+            className={`flex items-start gap-3 rounded-2xl px-3 py-3 text-sm ${
+              featured ? "bg-white/10 text-white" : "bg-[#f8fbff] text-slate-800"
+            }`}
+          >
+            <div className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${featured ? "bg-white" : "bg-blue-600"}`} />
+            <span>{bullet}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function GuidingStepsABAHomepage() {
   const nav = [
     { label: "How it works", href: "#how-it-works" },
-    { label: "Questions", href: "#questions" },
+    { label: "Offers", href: "#offers" },
+    { label: "Why us", href: "#why-us" },
     { label: "About", href: "#about" },
     { label: "Book", href: "#booking" },
   ];
@@ -98,33 +143,91 @@ export default function GuidingStepsABAHomepage() {
     {
       number: "01",
       title: "Start with clarity",
-      body: "We explain ABA in plain English, learn about your child and family, and help you understand what matters before you call a single provider.",
+      body: "We learn about your child, your goals, and where you are in the process so the next step feels calmer and more clear.",
     },
     {
       number: "02",
-      title: "Know what to ask",
-      body: "You get practical questions, red flags to watch for, and guidance on how to compare providers without getting lost in the process.",
+      title: "Know what actually matters",
+      body: "We explain ABA in plain English, help you compare providers, and show you what to ask before you commit.",
     },
     {
       number: "03",
-      title: "Choose with support",
-      body: "We can review your options, help you evaluate fit, and even join early calls or meetings so you do not have to do it alone.",
+      title: "Move forward with support",
+      body: "You leave with a simple action plan, more confidence, and the option for deeper support if you want help beyond the first call.",
     },
   ];
 
-  const offerings = [
+  const pricing = [
     {
-      title: "Navigation Call",
-      text: "A focused call to understand your situation, explain the process, and map your next best steps.",
+      title: "ABA Clarity Session",
+      price: "$250",
+      description:
+        "A focused first step for families who feel overwhelmed and want expert guidance before choosing a provider.",
+      bullets: [
+        "60-minute consult",
+        "Plain-English guidance",
+        "Questions to ask providers",
+        "1-page next-step plan",
+      ],
+      featured: true,
+      badge: "Start here",
     },
     {
-      title: "Provider Fit Support",
-      text: "Help comparing providers, reviewing answers, and identifying the best fit for your child and family.",
+      title: "Guided Setup",
+      price: "$1,000+",
+      description:
+        "A deeper done-with-you package for families comparing providers, reviewing recommendations, and making a final decision.",
+      bullets: [
+        "Provider comparison support",
+        "Treatment plan review",
+        "Red flag guidance",
+        "Decision support through setup",
+      ],
+      featured: false,
+      badge: "Most support",
     },
     {
-      title: "Meeting Advocacy",
-      text: "Hands-on support during intake calls, meetings, and early onboarding so you feel prepared and represented.",
+      title: "Monthly Support",
+      price: "$150/mo",
+      description:
+        "Ongoing support for families who want a trusted expert in their corner as questions come up over time.",
+      bullets: [
+        "Monthly check-ins",
+        "Questions between meetings",
+        "Help during transitions",
+        "Confidence as needs change",
+      ],
+      featured: false,
+      badge: "Ongoing care",
     },
+  ];
+
+  const whyUs = [
+    {
+      title: "Not a clinic",
+      text: "We do not push a provider. We help you make a confident decision that feels right for your child and family.",
+    },
+    {
+      title: "Calm, clear, human",
+      text: "Families do not need more jargon. They need someone who can explain what matters in a way that feels grounded and supportive.",
+    },
+    {
+      title: "The trusted layer",
+      text: "Think of us as the advisor families wish they had before the first intake call, not after they already feel stuck.",
+    },
+  ];
+
+  const firstTen = [
+    "Support for Austin-area families navigating ABA for the first time",
+    "Referral-friendly for clinics, pediatricians, and parent communities",
+    "Available for parent education, provider questions, and early meeting support",
+  ];
+
+  const contentPillars = [
+    "Things parents do not realize about ABA",
+    "Red flags when choosing a provider",
+    "What I would ask if this were my child",
+    "How many hours are appropriate and why more is not always better",
   ];
 
   const providerQuestions = [
@@ -216,7 +319,7 @@ export default function GuidingStepsABAHomepage() {
               </div>
               <div>
                 <p className="text-sm font-semibold">Guiding Steps ABA</p>
-                <p className="text-xs text-slate-500">Helping families choose the right ABA care</p>
+                <p className="text-xs text-slate-500">Helping families choose the right ABA provider with confidence</p>
               </div>
             </div>
 
@@ -252,20 +355,20 @@ export default function GuidingStepsABAHomepage() {
               </div>
 
               <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[0.98] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl [font-family:Georgia,serif]">
-                Choosing ABA care for your child should feel <span className="relative inline-block">guided
+                We help you choose the right ABA provider with <span className="relative inline-block">confidence
                   <svg className="absolute -bottom-3 left-0 w-full" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d={doodles.squiggleBlue} stroke="#2f6df6" strokeWidth="6" strokeLinecap="round" />
                   </svg>
-                </span>, not overwhelming.
+                </span>, not confusion.
               </h1>
 
               <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8">
-                Guiding Steps ABA helps families understand the process, ask the right questions, and choose care with more confidence. Not just the first provider with an opening. The right fit for your child.
+                Guiding Steps ABA is a calm, clear consulting service for families navigating ABA for the first time. We help you understand the process, ask the right questions, and move forward with more confidence.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ShimmerButton href="#booking">Book an Intro Call</ShimmerButton>
-                <ShimmerButton href="#how-it-works" dark={false}>See How It Works</ShimmerButton>
+                <ShimmerButton href="#booking">Book the ABA Clarity Session</ShimmerButton>
+                <ShimmerButton href="#offers" dark={false}>See pricing and support</ShimmerButton>
               </div>
 
               <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
@@ -301,22 +404,22 @@ export default function GuidingStepsABAHomepage() {
                 <div className="rounded-[1.5rem] border border-black/10 bg-[#f8fbff] p-4 sm:rounded-[1.8rem] sm:p-5">
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-sm text-slate-500">Parent Support Plan</p>
-                      <h3 className="text-xl font-semibold sm:text-2xl">Your next step</h3>
+                      <p className="text-sm text-slate-500">Signature offer</p>
+                      <h3 className="text-xl font-semibold sm:text-2xl">ABA Clarity Session</h3>
                     </div>
                     <div className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-                      Calm and clear
+                      $250
                     </div>
                   </div>
 
                   <div className="mt-5 rounded-[1.35rem] bg-white p-4 shadow-sm sm:rounded-[1.75rem]">
-                    <p className="text-sm text-slate-500">What we help with</p>
+                    <p className="text-sm text-slate-500">What families get</p>
                     <div className="mt-3 space-y-3">
                       {[
-                        "Understand the ABA process",
-                        "Know what to ask providers",
-                        "Spot red flags early",
-                        "Get support in first meetings",
+                        "60-minute consult",
+                        "Guidance in plain English",
+                        "Questions to ask providers",
+                        "A simple next-step plan",
                       ].map((line) => (
                         <div
                           key={line}
@@ -330,12 +433,12 @@ export default function GuidingStepsABAHomepage() {
                   </div>
 
                   <div className="mt-4 rounded-[1.75rem] bg-slate-900 p-5 text-white shadow-sm">
-                    <p className="text-sm text-white/70">What parents need most</p>
+                    <p className="text-sm text-white/70">Why families book</p>
                     <div className="mt-4 space-y-4">
                       {[
                         ["Confidence choosing a provider", "92%", "92%"],
                         ["Help asking the right questions", "88%", "88%"],
-                        ["Support in early meetings", "81%", "81%"],
+                        ["Support before the first intake call", "81%", "81%"],
                       ].map(([label, value, width]) => (
                         <div key={label}>
                           <div className="flex justify-between text-sm">
@@ -351,7 +454,7 @@ export default function GuidingStepsABAHomepage() {
                   </div>
 
                   <p className="mt-4 text-center text-xs leading-5 text-slate-500">
-                    Replace these with your real proof points, testimonials, or trust indicators.
+                    Swap these placeholders for your real proof points, testimonials, or local trust indicators.
                   </p>
                 </div>
               </div>
@@ -381,18 +484,37 @@ export default function GuidingStepsABAHomepage() {
       </Reveal>
 
       <Reveal delay={120}>
-        <section className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <section id="offers" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+          <SectionEyebrow>Offers and pricing</SectionEyebrow>
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
+              Start with one focused session, then choose the level of support you need.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+              Most families do not need more information. They need someone to tell them what actually matters. This pricing ladder keeps the first step simple while giving you room to offer deeper support later.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+            {pricing.map((item) => (
+              <PriceCard key={item.title} {...item} />
+            ))}
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal delay={150}>
+        <section id="why-us" className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
           <div className="rounded-[1.8rem] border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:p-8">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">Why families come to us</p>
             <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
               Because this is a big decision, and it should not feel like guesswork.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
-              ABA has its own language, its own process, and its own blind spots. When you are hearing these terms for the first time, it is easy to feel rushed into choosing whatever opens up first. Guiding Steps ABA helps families slow down, ask better questions, and make a decision that truly fits their child.
+              Guiding Steps ABA is not trying to be another clinic. We are the calm, trusted layer above the noise. Families come to us when they want clarity, perspective, and support before they commit.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {offerings.map((item, idx) => (
+              {whyUs.map((item, idx) => (
                 <div key={item.title} className="relative rounded-[1.4rem] bg-[#f8fbff] p-4 shadow-inner transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:rounded-[1.75rem] sm:p-5">
                   {idx === 2 && (
                     <svg className="absolute -right-2 -top-2 h-10 w-10 rotate-[10deg]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -407,31 +529,51 @@ export default function GuidingStepsABAHomepage() {
           </div>
 
           <div className="rounded-[2.25rem] border border-black/10 bg-slate-900 p-8 text-white shadow-xl">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/55">Common parent questions</p>
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/55">Early growth plan</p>
             <div className="mt-5 space-y-3">
-              {[
-                "I have no idea where to start.",
-                "How do I know which provider is actually a good fit?",
-                "What questions should I ask on the first call?",
-                "What happens if staff keep changing or no one shows up?",
-                "Can ABA work with OT, speech, school, and daily living goals?",
-              ].map((item) => (
+              {firstTen.map((item) => (
                 <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-6 text-white/90 transition duration-300 hover:bg-white/10">
                   {item}
                 </div>
               ))}
             </div>
             <div className="mt-6 rounded-3xl bg-white/10 p-5">
-              <p className="text-base font-medium">You should not have to figure this out alone.</p>
+              <p className="text-base font-medium">Built for referrals, trust, and parent peace of mind.</p>
               <p className="mt-2 text-sm leading-6 text-white/70">
-                The right support can help you feel less overwhelmed, ask better questions, and move forward with more confidence.
+                This section helps the site feel bigger than a single call. It shows families, clinics, and referral partners exactly where you fit in the process.
               </p>
             </div>
           </div>
         </section>
       </Reveal>
 
-      <Reveal delay={160}>
+      <Reveal delay={170}>
+        <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+          <div className="rounded-[2rem] border border-black/10 bg-white/82 p-6 shadow-xl backdrop-blur sm:rounded-[2.5rem] sm:p-10">
+            <div className="mb-6 text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Educational content is part of the trust engine. Teach first. Then the right families will come to you.
+              </p>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {contentPillars.map((item, index) => (
+                <div
+                  key={index}
+                  className={`rounded-[1.45rem] bg-[#f8fbff] p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:rounded-[1.8rem] sm:p-6 ${
+                    index === 0 ? "rotate-[-1deg]" : index === 1 ? "rotate-[0.8deg]" : index === 2 ? "rotate-[-0.6deg]" : "rotate-[0.6deg]"
+                  }`}
+                >
+                  <p className="text-lg leading-8 text-slate-800">{item}</p>
+                  <p className="mt-4 text-sm font-medium text-slate-500">Future Reel or blog topic</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal delay={200}>
         <section id="questions" className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="mb-5 flex items-center gap-3">
             <svg className="h-8 w-24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -466,7 +608,7 @@ export default function GuidingStepsABAHomepage() {
         </section>
       </Reveal>
 
-      <Reveal delay={200}>
+      <Reveal delay={230}>
         <section id="about" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="rounded-[2rem] border border-black/10 bg-white/82 p-6 shadow-xl backdrop-blur sm:rounded-[2.5rem] sm:p-12">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -516,7 +658,7 @@ export default function GuidingStepsABAHomepage() {
         </section>
       </Reveal>
 
-      <Reveal delay={240}>
+      <Reveal delay={250}>
         <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="rounded-[2rem] border border-black/10 bg-white/82 p-6 shadow-xl backdrop-blur sm:rounded-[2.5rem] sm:p-10">
             <div className="mb-6 text-center">
@@ -562,10 +704,10 @@ export default function GuidingStepsABAHomepage() {
               <h2 className="mt-3 max-w-md text-3xl font-semibold tracking-tight">A simple booking flow that feels easy.</h2>
               <div className="mt-6 space-y-4">
                 {[
-                  "Book your intro call",
+                  "Book your ABA Clarity Session",
                   "Share where you are in the process",
-                  "Get clarity on your next best step",
-                  "Move forward with guidance and support",
+                  "Get a simple plan and the right questions to ask",
+                  "Decide whether you want deeper support after the call",
                 ].map((item, index) => (
                   <div key={item} className="flex items-start gap-4 rounded-[1.4rem] bg-white px-4 py-4 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
@@ -593,13 +735,13 @@ export default function GuidingStepsABAHomepage() {
                   Start with one calm, clear conversation.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-                  Book an intro call to talk through your situation, your child’s needs, and the next best step. From there, we can help you prepare, compare providers, and move forward with more confidence.
+                  Book the ABA Clarity Session to talk through your child’s needs, where you are in the process, and your next best step. From there, families can stay at the one-call level or move into guided setup and ongoing support.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3 text-sm text-white/75">
                   {[
-                    "Intro call",
-                    "Provider fit support",
-                    "Meeting advocacy",
+                    "ABA Clarity Session",
+                    "Guided Setup",
+                    "Monthly Support",
                   ].map((item) => (
                     <span key={item} className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
                       {item}
@@ -613,7 +755,7 @@ export default function GuidingStepsABAHomepage() {
                 <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-black/10 bg-slate-50 p-2 shadow-inner">
                   <div className="flex items-center justify-between border-b border-black/10 px-3 py-2 text-xs text-slate-500">
                     <span>Calendly embed placeholder</span>
-                    <span>30 min</span>
+                    <span>60 min</span>
                   </div>
                   <div className="flex h-[320px] items-center justify-center rounded-[1rem] bg-[linear-gradient(135deg,#ffffff,#eef5ff)] px-5 text-center text-sm text-slate-500">
                     Replace this card with your real Calendly inline embed for a premium booking experience.
@@ -626,9 +768,9 @@ export default function GuidingStepsABAHomepage() {
                   <input className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl" placeholder="Phone number" />
                   <select className="w-full rounded-xl border border-black/10 px-4 py-3 text-slate-600 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl">
                     <option>What support do you need?</option>
-                    <option>Learning the ABA process</option>
-                    <option>Choosing between providers</option>
-                    <option>Joining intake calls or meetings</option>
+                    <option>ABA Clarity Session</option>
+                    <option>Guided Setup</option>
+                    <option>Monthly Support</option>
                   </select>
                   <textarea
                     className="min-h-[120px] w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl"
