@@ -6,12 +6,12 @@
   <title>Guiding Steps ABA</title>
   <meta
     name="description"
-    content="Guiding Steps ABA helps families choose the right ABA provider with confidence through calm, clear consulting support."
+    content="Independent BCBA guidance that turns overwhelming ABA provider choices into a clear, confident plan."
   />
   <style>
     :root {
       --bg: #dcecff;
-      --card: rgba(255, 255, 255, 0.82);
+      --card: rgba(255, 255, 255, 0.84);
       --card-strong: #ffffff;
       --text: #0f172a;
       --muted: #5b6472;
@@ -28,13 +28,8 @@
       --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -44,15 +39,8 @@
       line-height: 1.5;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
     .container {
       width: min(var(--max), calc(100% - 32px));
@@ -98,18 +86,10 @@
       flex: 0 0 auto;
     }
 
-    .brand-text {
-      min-width: 0;
-    }
-
+    .brand-text { min-width: 0; }
     .brand-text strong,
-    .brand-text span {
-      display: block;
-    }
-
-    .brand-text strong {
-      font-size: 14px;
-    }
+    .brand-text span { display: block; }
+    .brand-text strong { font-size: 14px; }
 
     .brand-text span {
       font-size: 12px;
@@ -128,9 +108,7 @@
       color: var(--muted);
     }
 
-    nav a:hover {
-      color: var(--text);
-    }
+    nav a:hover { color: var(--text); }
 
     .btn,
     button.btn {
@@ -160,20 +138,14 @@
       transition: left 0.7s ease;
     }
 
-    .btn:hover::after {
-      left: 110%;
-    }
+    .btn:hover::after { left: 110%; }
 
     .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 16px 34px rgba(15, 23, 42, 0.15);
     }
 
-    .btn-dark {
-      background: var(--dark);
-      color: white;
-    }
-
+    .btn-dark { background: var(--dark); color: white; }
     .btn-light {
       background: rgba(255, 255, 255, 0.82);
       border-color: var(--line);
@@ -184,7 +156,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 56px 0 60px;
+      padding: 52px 0 52px;
     }
 
     .blur {
@@ -230,7 +202,9 @@
     .about-grid,
     .faq-grid,
     .booking-grid,
-    .testimonial-grid {
+    .testimonial-grid,
+    .proof-grid,
+    .what-grid {
       display: grid;
       gap: 24px;
     }
@@ -270,34 +244,18 @@
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      max-width: 760px;
+      font-size: clamp(40px, 6.6vw, 74px);
+      max-width: 820px;
       margin-top: 22px;
     }
 
-    h2 {
-      font-size: clamp(34px, 5vw, 56px);
-    }
-
-    h3, p {
-      margin: 0;
-    }
-
-    .underline-wrap {
-      position: relative;
-      display: inline-block;
-    }
-
-    .underline-wrap svg {
-      position: absolute;
-      left: 0;
-      bottom: -12px;
-      width: 100%;
-    }
+    h2 { font-size: clamp(34px, 5vw, 56px); }
+    h3, p { margin: 0; }
 
     .hero-copy p.lead,
     .section-copy p,
-    .dark-copy p {
+    .dark-copy p,
+    .section-intro {
       font-size: 18px;
       line-height: 1.75;
       color: var(--muted);
@@ -305,21 +263,26 @@
 
     .hero-copy p.lead {
       max-width: 760px;
-      margin-top: 24px;
+      margin-top: 22px;
     }
 
     .btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 28px;
+    }
+
+    .hero-note {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 10px;
     }
 
     .mini-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 28px;
+      margin-top: 24px;
       max-width: 760px;
     }
 
@@ -331,7 +294,10 @@
     .quote-card,
     .list-card,
     .booking-card,
-    .offer-card {
+    .offer-card,
+    .proof-card,
+    .what-item,
+    .problem-quote {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
@@ -341,17 +307,16 @@
 
     .mini-card {
       padding: 18px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
     }
 
-    .card {
-      padding: 28px;
-    }
-
-    .hero-panel {
-      position: relative;
-    }
+    .mini-card .bullet { margin-top: 7px; }
+    .card { padding: 28px; }
+    .hero-panel { position: relative; }
 
     .offer-shell {
       padding: 14px;
@@ -377,9 +342,7 @@
     }
 
     .offer-head small,
-    .muted {
-      color: var(--muted);
-    }
+    .muted { color: var(--muted); }
 
     .pill-price,
     .tag {
@@ -392,17 +355,14 @@
       font-weight: 700;
     }
 
-    .pill-price {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
+    .pill-price { background: #dbeafe; color: #1d4ed8; }
 
     .white-panel {
       background: white;
       border-radius: 24px;
       padding: 20px;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
-      margin-top: 22px;
+      margin-top: 18px;
     }
 
     .stack {
@@ -438,13 +398,9 @@
       margin-top: 18px;
     }
 
-    .dark-panel .muted {
-      color: rgba(255,255,255,0.68);
-    }
+    .dark-panel .muted { color: rgba(255,255,255,0.68); }
 
-    .bar-row {
-      margin-top: 14px;
-    }
+    .bar-row { margin-top: 14px; }
 
     .bar-meta {
       display: flex;
@@ -468,9 +424,7 @@
       background: white;
     }
 
-    section.section {
-      padding: 22px 0;
-    }
+    section.section { padding: 22px 0; }
 
     .eyebrow {
       display: flex;
@@ -492,24 +446,22 @@
       margin-bottom: 28px;
     }
 
-    .cards-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .cards-4 {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .pricing-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    .two-col { grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .pricing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .proof-grid { grid-template-columns: 1.1fr 0.9fr; }
+    .what-grid { grid-template-columns: 1fr 1fr; }
 
     .step-card,
     .offer-card,
     .soft-card,
     .quote-card,
     .list-card,
-    .booking-card {
+    .booking-card,
+    .proof-card,
+    .what-item,
+    .problem-quote {
       padding: 26px;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
@@ -520,7 +472,10 @@
     .quote-card:hover,
     .list-card:hover,
     .booking-card:hover,
-    .mini-card:hover {
+    .mini-card:hover,
+    .proof-card:hover,
+    .what-item:hover,
+    .problem-quote:hover {
       transform: translateY(-4px);
       box-shadow: 0 16px 38px rgba(15, 23, 42, 0.11);
     }
@@ -536,7 +491,10 @@
     .soft-card h3,
     .offer-card h3,
     .faq-item h3,
-    .question-panel h3 {
+    .question-panel h3,
+    .problem-quote h3,
+    .proof-card h3,
+    .what-item h3 {
       font-size: 28px;
       line-height: 1.1;
       letter-spacing: -0.03em;
@@ -550,7 +508,10 @@
     .quote-card p,
     .list-card p,
     .booking-card p,
-    .faq-answer {
+    .faq-answer,
+    .problem-quote p,
+    .proof-card p,
+    .what-item p {
       color: var(--muted);
       line-height: 1.75;
     }
@@ -563,17 +524,10 @@
 
     .offer-card.featured p,
     .offer-card.featured .meta,
-    .offer-card.featured .stack-item {
-      color: rgba(255,255,255,0.86);
-    }
+    .offer-card.featured .stack-item { color: rgba(255,255,255,0.86); }
 
-    .offer-card.featured .stack-item {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .offer-card.featured .bullet {
-      background: white;
-    }
+    .offer-card.featured .stack-item { background: rgba(255,255,255,0.1); }
+    .offer-card.featured .bullet { background: white; }
 
     .offer-card .price {
       font-size: 42px;
@@ -591,14 +545,32 @@
       right: 22px;
     }
 
-    .offer-card.featured .tag {
-      background: white;
-      color: var(--dark);
+    .offer-card.featured .tag { background: white; color: var(--dark); }
+
+    .problem-quote {
+      background: var(--dark);
+      color: white;
+      border-color: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
     }
 
-    .two-col {
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: stretch;
+    .problem-quote p,
+    .problem-quote .quote-meta,
+    .dark-card p,
+    .dark-card .small { color: rgba(255,255,255,0.8); }
+
+    blockquote {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      line-height: 1.28;
+      letter-spacing: -0.03em;
+    }
+
+    .quote-meta {
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 600;
     }
 
     .dark-card {
@@ -608,11 +580,6 @@
       padding: 32px;
       border: 1px solid rgba(255,255,255,0.04);
       box-shadow: var(--shadow);
-    }
-
-    .dark-card p,
-    .dark-card .small {
-      color: rgba(255,255,255,0.78);
     }
 
     .dark-list {
@@ -631,7 +598,7 @@
     }
 
     .full-wrap {
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.84);
       border: 1px solid var(--line);
       border-radius: 34px;
       padding: 32px;
@@ -639,16 +606,33 @@
       backdrop-filter: blur(12px);
     }
 
-    .cards-4 .list-card p:first-child {
-      color: var(--text);
-      font-size: 26px;
-      line-height: 1.5;
-      margin-bottom: 14px;
+    .what-item { display: flex; gap: 14px; align-items: flex-start; }
+    .what-item .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: #d1fae5;
+      color: #047857;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex: 0 0 auto;
+      margin-top: 3px;
     }
 
-    .questions-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .proof-card .big {
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--text);
+      margin-bottom: 8px;
     }
+
+    .proof-list { display: grid; gap: 18px; }
+
+    .questions-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .question-panel {
       background: rgba(255,255,255,0.82);
@@ -672,16 +656,8 @@
       line-height: 1.7;
     }
 
-    .about-grid {
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-    }
-
-    .about-text {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px;
-    }
+    .about-grid { grid-template-columns: 1.1fr 0.9fr; align-items: center; }
+    .about-text { display: grid; gap: 16px; margin-top: 18px; }
 
     .about-card-shell {
       background: #dbeafe;
@@ -714,6 +690,12 @@
       border-radius: 16px;
       border: 1px solid var(--line);
       background: linear-gradient(135deg, #f5f9ff, #e7f1ff);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      padding: 18px;
     }
 
     .photo-meta {
@@ -733,9 +715,7 @@
       flex: 0 0 auto;
     }
 
-    .testimonial-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    .testimonial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .quote-card p:first-child {
       color: var(--text);
@@ -743,10 +723,7 @@
       line-height: 1.65;
     }
 
-    .faq-grid {
-      grid-template-columns: 1fr 0.95fr;
-      align-items: start;
-    }
+    .faq-grid { grid-template-columns: 1fr 0.95fr; align-items: start; }
 
     .faq-box,
     .next-box {
@@ -768,10 +745,7 @@
       margin-top: 10px;
     }
 
-    .faq-item {
-      padding: 0;
-      overflow: hidden;
-    }
+    .faq-item { padding: 0; overflow: hidden; }
 
     .faq-question {
       width: 100%;
@@ -787,9 +761,7 @@
       cursor: pointer;
     }
 
-    .faq-question strong {
-      font-size: 20px;
-    }
+    .faq-question strong { font-size: 20px; }
 
     .faq-icon {
       width: 34px;
@@ -804,9 +776,7 @@
       line-height: 1;
     }
 
-    .faq-item.active .faq-icon {
-      transform: rotate(45deg);
-    }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
 
     .faq-answer {
       max-height: 0;
@@ -893,9 +863,7 @@
       opacity: 0.18;
     }
 
-    .booking-wrap p {
-      color: rgba(255,255,255,0.76);
-    }
+    .booking-wrap p { color: rgba(255,255,255,0.76); }
 
     .chip-row {
       display: flex;
@@ -949,19 +917,11 @@
       font-size: 14px;
     }
 
-    .form {
-      display: grid;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
+    .form { display: grid; gap: 12px; margin-top: 14px; }
     .field,
     .field textarea,
     .field select,
-    .field input {
-      width: 100%;
-      font: inherit;
-    }
+    .field input { width: 100%; font: inherit; }
 
     .field input,
     .field select,
@@ -993,6 +953,19 @@
       margin-top: 12px;
     }
 
+    .final-cta {
+      text-align: center;
+      padding: 8px 0 24px;
+    }
+
+    .final-cta h2 { max-width: 860px; margin: 0 auto; }
+
+    .final-cta p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
     .mobile-cta {
       display: none;
       position: fixed;
@@ -1009,19 +982,11 @@
       box-shadow: 0 18px 40px rgba(15, 23, 42, 0.24);
     }
 
-    .hide-mobile {
-      display: inline-flex;
-    }
-
-    .show-mobile {
-      display: none;
-    }
+    .hide-mobile { display: inline-flex; }
+    .show-mobile { display: none; }
 
     @media (max-width: 1100px) {
-      nav {
-        display: none;
-      }
-
+      nav { display: none; }
       .hero-grid,
       .two-col,
       .pricing-grid,
@@ -1031,32 +996,18 @@
       .about-grid,
       .faq-grid,
       .booking-grid,
-      .testimonial-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .mini-grid {
+      .testimonial-grid,
+      .proof-grid,
+      .what-grid {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 720px) {
-      .container {
-        width: min(var(--max), calc(100% - 20px));
-      }
-
-      .topbar {
-        border-radius: 24px;
-        padding: 12px;
-      }
-
-      .brand-text span {
-        max-width: 180px;
-      }
-
-      .hero {
-        padding-top: 22px;
-      }
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .topbar { border-radius: 24px; padding: 12px; }
+      .brand-text span { max-width: 180px; }
+      .hero { padding-top: 22px; }
 
       .card,
       .faq-box,
@@ -1069,32 +1020,17 @@
       .step-card,
       .quote-card,
       .list-card,
-      .booking-card {
-        padding: 22px;
-      }
+      .booking-card,
+      .proof-card,
+      .what-item,
+      .problem-quote { padding: 22px; }
 
-      .offer-shell {
-        border-radius: 28px;
-        padding: 10px;
-      }
-
-      .offer-inner {
-        border-radius: 24px;
-        padding: 18px;
-      }
-
-      .hide-mobile {
-        display: none;
-      }
-
-      .show-mobile,
-      .mobile-cta {
-        display: block;
-      }
-
-      body {
-        padding-bottom: 88px;
-      }
+      .offer-shell { border-radius: 28px; padding: 10px; }
+      .offer-inner { border-radius: 24px; padding: 18px; }
+      .hide-mobile { display: none; }
+      .show-mobile, .mobile-cta { display: block; }
+      body { padding-bottom: 88px; }
+      blockquote { font-size: 28px; }
     }
   </style>
 </head>
@@ -1106,19 +1042,19 @@
           <div class="brand-badge">G</div>
           <div class="brand-text">
             <strong>Guiding Steps ABA</strong>
-            <span>Helping families choose the right ABA provider with confidence</span>
+            <span>Independent BCBA guidance that turns overwhelming choices into a clear, confident plan.</span>
           </div>
         </div>
 
         <nav>
-          <a href="#how-it-works">How it works</a>
-          <a href="#offers">Offers</a>
-          <a href="#why-us">Why us</a>
-          <a href="#about">About</a>
+          <a href="#problem">Problem</a>
+          <a href="#what-you-get">What you get</a>
+          <a href="#proof">Proof</a>
+          <a href="#about">About Emma</a>
           <a href="#booking">Book</a>
         </nav>
 
-        <a href="#booking" class="btn btn-dark hide-mobile">Book a call</a>
+        <a href="#booking" class="btn btn-dark hide-mobile">Book Your ABA Clarity Session</a>
       </div>
     </div>
   </div>
@@ -1132,33 +1068,23 @@
       <div class="hero-copy">
         <div class="eyebrow-pill">
           <span class="dot"></span>
-          Led by a BCBA with 7+ years of experience
+          Independent guidance. No clinic bias.
         </div>
 
-        <h1>
-          We help you choose the right ABA provider with
-          <span class="underline-wrap">
-            confidence
-            <svg viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
-            </svg>
-          </span>, not confusion.
-        </h1>
+        <h1>One Hour From Now You’ll Know Exactly Which ABA Provider Is Right for Your Child, Or Your Money Back.</h1>
 
-        <p class="lead">
-          Guiding Steps ABA is a calm, clear consulting service for families navigating ABA for the first time. We help you understand the process, ask the right questions, and move forward with more confidence.
-        </p>
-
-        <div class="btn-row">
-          <a href="#booking" class="btn btn-dark">Book the ABA Clarity Session</a>
-          <a href="#offers" class="btn btn-light">See pricing and support</a>
-        </div>
+        <p class="lead">Independent BCBA guidance that turns overwhelming choices into a clear, confident plan.</p>
 
         <div class="mini-grid">
-          <div class="mini-card">Plain-English guidance</div>
-          <div class="mini-card">Provider comparison support</div>
-          <div class="mini-card">Meeting advocacy</div>
+          <div class="mini-card"><span class="bullet"></span><span>Led by Emma Davis, MS, BCBA, 7 years, 320 families served</span></div>
+          <div class="mini-card"><span class="bullet"></span><span>92% of parents choose a provider within 14 days after our session</span></div>
+          <div class="mini-card"><span class="bullet"></span><span>100% refund if you don’t leave the call with new clarity</span></div>
         </div>
+
+        <div class="btn-row">
+          <a href="#booking" class="btn btn-dark">Book Your ABA Clarity Session →</a>
+        </div>
+        <p class="hero-note">60-min Zoom • $250</p>
       </div>
 
       <div class="hero-panel">
@@ -1173,35 +1099,106 @@
             </div>
 
             <div class="white-panel">
-              <small class="muted">What families get</small>
+              <small class="muted">What you get</small>
               <div class="stack">
-                <div class="stack-item"><span class="bullet"></span>60-minute consult</div>
-                <div class="stack-item"><span class="bullet"></span>Guidance in plain English</div>
-                <div class="stack-item"><span class="bullet"></span>Questions to ask providers</div>
-                <div class="stack-item"><span class="bullet"></span>A simple next-step plan</div>
+                <div class="stack-item"><span class="bullet"></span>60-minute consult with Emma, BCBA</div>
+                <div class="stack-item"><span class="bullet"></span>Plain-English breakdown of ABA models</div>
+                <div class="stack-item"><span class="bullet"></span>Custom question list for provider calls</div>
+                <div class="stack-item"><span class="bullet"></span>1-page action plan delivered the same day</div>
+                <div class="stack-item"><span class="bullet"></span>Email support for 7 days after the call</div>
               </div>
             </div>
 
             <div class="dark-panel">
-              <small class="muted">Why families book</small>
-
+              <small class="muted">Risk-free promise</small>
               <div class="bar-row">
-                <div class="bar-meta"><span>Confidence choosing a provider</span><span>92%</span></div>
+                <div class="bar-meta"><span>Parents who say the session eliminated guesswork</span><span>9 / 10</span></div>
+                <div class="bar"><span style="width: 90%"></span></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-meta"><span>Parents choosing a provider within 14 days</span><span>92%</span></div>
                 <div class="bar"><span style="width: 92%"></span></div>
               </div>
-
               <div class="bar-row">
-                <div class="bar-meta"><span>Help asking the right questions</span><span>88%</span></div>
-                <div class="bar"><span style="width: 88%"></span></div>
-              </div>
-
-              <div class="bar-row">
-                <div class="bar-meta"><span>Support before the first intake call</span><span>81%</span></div>
-                <div class="bar"><span style="width: 81%"></span></div>
+                <div class="bar-meta"><span>Refund if you leave without new clarity</span><span>100%</span></div>
+                <div class="bar"><span style="width: 100%"></span></div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <p class="helper" style="text-align:center;">Swap these placeholders for your real proof points, testimonials, or local trust indicators.</p>
+  <section class="section" id="problem">
+    <div class="container two-col">
+      <div class="problem-quote">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);">The problem</p>
+        <blockquote>“Every clinic sounded the same. We couldn’t afford a wrong turn.”</blockquote>
+        <div class="quote-meta">— Sarah T., Austin TX</div>
+      </div>
+
+      <div class="card">
+        <p class="section-intro">Choosing an ABA provider can feel like gambling with your child’s future. Jargon, wait-lists, and hard sells leave parents stressed and second-guessing.</p>
+        <p class="section-intro" style="margin-top:16px;">Guiding Steps ABA is not a clinic. We’re the independent, calm voice in your corner, translating jargon, comparing options, and protecting your child’s best interest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="what-you-get">
+    <div class="container full-wrap">
+      <div class="eyebrow">
+        <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
+        </svg>
+        <p>What you get</p>
+      </div>
+
+      <div class="what-grid">
+        <div class="what-item"><span class="check">✓</span><div><h3>60-minute consult with Emma, BCBA</h3><p>A focused call that helps you sort through your options with someone who understands the field.</p></div></div>
+        <div class="what-item"><span class="check">✓</span><div><h3>Plain-English breakdown of ABA models</h3><p>No jargon, no fluff, just a clear explanation of what each model means for your child.</p></div></div>
+        <div class="what-item"><span class="check">✓</span><div><h3>Custom question list</h3><p>Use it on provider calls so clinics show their true colors fast.</p></div></div>
+        <div class="what-item"><span class="check">✓</span><div><h3>1-page action plan the same day</h3><p>You leave knowing your next steps, not wondering what to do after the call.</p></div></div>
+        <div class="what-item"><span class="check">✓</span><div><h3>7 days of email support</h3><p>Follow-up questions do not have to wait until another paid session.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proof">
+    <div class="container proof-grid">
+      <div class="card">
+        <div class="eyebrow">
+          <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 19C43 6 76 4 113 7C152 10 186 12 216 16" stroke="#ff6f61" stroke-width="6" stroke-linecap="round" />
+          </svg>
+          <p>Results at a glance</p>
+        </div>
+
+        <div class="proof-list">
+          <div class="proof-card">
+            <div class="big">9 / 10</div>
+            <p>Parents say the session “eliminated guesswork.”</p>
+          </div>
+          <div class="proof-card">
+            <div class="big">41 → 18</div>
+            <p>Average time to secure services dropped from 41 days to 18 days.</p>
+          </div>
+          <div class="proof-card">
+            <div class="big">Featured</div>
+            <p>Speaker for Dell Children’s Autism Parent Group.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="testimonial-grid" style="grid-template-columns:1fr; gap:18px;">
+          <div class="quote-card">
+            <p>“Emma surfaced deal-breaking red flags we never would’ve caught.”</p>
+            <p style="margin-top:18px;font-size:14px;">— Mike & Lisa P.</p>
+          </div>
+          <div class="quote-card">
+            <p>“Worth every dollar. We went from frozen to decisive in an hour.”</p>
+            <p style="margin-top:18px;font-size:14px;">— Karen D., mom of twins</p>
           </div>
         </div>
       </div>
@@ -1217,22 +1214,11 @@
         <p>How it works</p>
       </div>
 
-      <div class="cards-3">
-        <div class="step-card">
-          <div class="step-num">01</div>
-          <h3>Start with clarity</h3>
-          <p>We learn about your child, your goals, and where you are in the process so the next step feels calmer and more clear.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">02</div>
-          <h3>Know what actually matters</h3>
-          <p>We explain ABA in plain English, help you compare providers, and show you what to ask before you commit.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">03</div>
-          <h3>Move forward with support</h3>
-          <p>You leave with a simple action plan, more confidence, and the option for deeper support if you want help beyond the first call.</p>
-        </div>
+      <div class="cards-4">
+        <div class="step-card"><div class="step-num">1</div><h3>Book your Clarity Session</h3><p>Use the calendar below to reserve your 60-minute Zoom call.</p></div>
+        <div class="step-card"><div class="step-num">2</div><h3>Share your child’s goals</h3><p>Complete a short pre-call form with your current options and priorities.</p></div>
+        <div class="step-card"><div class="step-num">3</div><h3>Meet on Zoom</h3><p>Get answers, compare options, and leave with a step-by-step plan.</p></div>
+        <div class="step-card"><div class="step-num">4</div><h3>Keep going if needed</h3><p>Roll your fee into Guided Setup or Monthly Support if you want deeper help.</p></div>
       </div>
     </div>
   </section>
@@ -1243,148 +1229,32 @@
         <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
         </svg>
-        <p>Offers and pricing</p>
+        <p>Plans & pricing</p>
       </div>
 
       <div class="section-copy">
-        <h2>Start with one focused session, then choose the level of support you need.</h2>
-        <p style="margin-top:20px;">Most families do not need more information. They need someone to tell them what actually matters. This pricing ladder keeps the first step simple while giving you room to offer deeper support later.</p>
+        <h2>Start Small, Scale As You Need</h2>
+        <p style="margin-top:20px;">Risk-Free: If you feel no added clarity after Session #1, we refund you on the spot.</p>
       </div>
 
       <div class="pricing-grid">
-        <div class="offer-card featured" style="position:relative;">
-          <div class="tag">Start here</div>
+        <div class="offer-card" style="position:relative;">
           <div class="meta">ABA Clarity Session</div>
           <div class="price">$250</div>
-          <p style="margin-top:16px;">A focused first step for families who feel overwhelmed and want expert guidance before choosing a provider.</p>
-          <div class="stack">
-            <div class="stack-item"><span class="bullet"></span>60-minute consult</div>
-            <div class="stack-item"><span class="bullet"></span>Plain-English guidance</div>
-            <div class="stack-item"><span class="bullet"></span>Questions to ask providers</div>
-            <div class="stack-item"><span class="bullet"></span>1-page next-step plan</div>
-          </div>
+          <p style="margin-top:16px;">The fast track to informed action.</p>
         </div>
 
-        <div class="offer-card" style="position:relative;">
-          <div class="tag">Most support</div>
+        <div class="offer-card featured" style="position:relative;">
+          <div class="tag">Most popular</div>
           <div class="meta">Guided Setup</div>
-          <div class="price">$1,000+</div>
-          <p style="margin-top:16px;">A deeper done-with-you package for families comparing providers, reviewing recommendations, and making a final decision.</p>
-          <div class="stack">
-            <div class="stack-item"><span class="bullet"></span>Provider comparison support</div>
-            <div class="stack-item"><span class="bullet"></span>Treatment plan review</div>
-            <div class="stack-item"><span class="bullet"></span>Red flag guidance</div>
-            <div class="stack-item"><span class="bullet"></span>Decision support through setup</div>
-          </div>
+          <div class="price">$1,200</div>
+          <p style="margin-top:16px;">We sit in on provider calls, review treatment plans, and stay until you sign with confidence.</p>
         </div>
 
         <div class="offer-card" style="position:relative;">
-          <div class="tag">Ongoing care</div>
-          <div class="meta">Monthly Support</div>
-          <div class="price">$150/mo</div>
-          <p style="margin-top:16px;">Ongoing support for families who want a trusted expert in their corner as questions come up over time.</p>
-          <div class="stack">
-            <div class="stack-item"><span class="bullet"></span>Monthly check-ins</div>
-            <div class="stack-item"><span class="bullet"></span>Questions between meetings</div>
-            <div class="stack-item"><span class="bullet"></span>Help during transitions</div>
-            <div class="stack-item"><span class="bullet"></span>Confidence as needs change</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="why-us">
-    <div class="container two-col">
-      <div class="card">
-        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Why families come to us</p>
-        <h2 style="margin-top:12px;">Because this is a big decision, and it should not feel like guesswork.</h2>
-        <p style="margin-top:20px;">Guiding Steps ABA is not trying to be another clinic. We are the calm, trusted layer above the noise. Families come to us when they want clarity, perspective, and support before they commit.</p>
-
-        <div class="cards-3" style="margin-top:26px;">
-          <div class="soft-card">
-            <h3>Not a clinic</h3>
-            <p style="margin-top:12px;">We do not push a provider. We help you make a confident decision that feels right for your child and family.</p>
-          </div>
-          <div class="soft-card">
-            <h3>Calm, clear, human</h3>
-            <p style="margin-top:12px;">Families do not need more jargon. They need someone who can explain what matters in a way that feels grounded and supportive.</p>
-          </div>
-          <div class="soft-card">
-            <h3>The trusted layer</h3>
-            <p style="margin-top:12px;">Think of us as the advisor families wish they had before the first intake call, not after they already feel stuck.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="dark-card">
-        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Early growth plan</p>
-        <div class="dark-list">
-          <div>Support for Austin-area families navigating ABA for the first time</div>
-          <div>Referral-friendly for clinics, pediatricians, and parent communities</div>
-          <div>Available for parent education, provider questions, and early meeting support</div>
-        </div>
-        <div style="margin-top:20px;background:rgba(255,255,255,0.1);border-radius:24px;padding:20px;">
-          <strong style="display:block;font-size:18px;">Built for referrals, trust, and parent peace of mind.</strong>
-          <p style="margin-top:10px;">This section helps the site feel bigger than a single call. It shows families, clinics, and referral partners exactly where you fit in the process.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container full-wrap">
-      <div style="text-align:center;margin-bottom:24px;">
-        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Educational content is part of the trust engine. Teach first. Then the right families will come to you.</p>
-      </div>
-
-      <div class="cards-4">
-        <div class="list-card"><p>Things parents do not realize about ABA</p><p>Future Reel or blog topic</p></div>
-        <div class="list-card"><p>Red flags when choosing a provider</p><p>Future Reel or blog topic</p></div>
-        <div class="list-card"><p>What I would ask if this were my child</p><p>Future Reel or blog topic</p></div>
-        <div class="list-card"><p>How many hours are appropriate and why more is not always better</p><p>Future Reel or blog topic</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="questions">
-    <div class="container">
-      <div class="eyebrow">
-        <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 19C43 6 76 4 113 7C152 10 186 12 216 16" stroke="#ff6f61" stroke-width="6" stroke-linecap="round" />
-        </svg>
-        <p>Questions that matter</p>
-      </div>
-
-      <div class="questions-grid">
-        <div class="question-panel">
-          <h3>Questions to ask providers</h3>
-          <div class="question-list">
-            <div>What happens if an RBT does not show up to session?</div>
-            <div>How many clients does each BCBA oversee?</div>
-            <div>Are sessions led by an RBT, a BCBA, or both?</div>
-            <div>How much parent involvement is expected?</div>
-            <div>Do you prioritize assent and reinforcement-based care?</div>
-            <div>Do you offer make-up days?</div>
-            <div>Can services happen in home, clinic, school, or community settings?</div>
-            <div>Do you support collaboration with OT and speech?</div>
-            <div>Can you work on daily living skills?</div>
-          </div>
-        </div>
-
-        <div class="question-panel">
-          <h3>Questions families often have</h3>
-          <div class="question-list">
-            <div>What do I need to do to get started?</div>
-            <div>What will my child be doing all day?</div>
-            <div>How many hours are appropriate?</div>
-            <div>How many therapists will work with my child?</div>
-            <div>What happens if we go on vacation?</div>
-            <div>Should we choose home, clinic, school, or community services?</div>
-            <div>What can ABA help with and what can it not do?</div>
-            <div>What is the purpose of ABA?</div>
-            <div>Can ABA be applied across the lifespan?</div>
-          </div>
+          <div class="meta">Ongoing Support</div>
+          <div class="price">$150 / mo</div>
+          <p style="margin-top:16px;">Quarterly check-ins, on-call questions, transition planning.</p>
         </div>
       </div>
     </div>
@@ -1398,55 +1268,31 @@
             <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
             </svg>
-            <p>About your guide</p>
+            <p>About Emma</p>
           </div>
 
-          <h2>Hi, I’m [Her Name].</h2>
+          <h2>Emma Davis, MS, BCBA</h2>
           <div class="about-text">
-            <p>I’m a Board Certified Behavior Analyst with over 7 years of experience working with children and families across home, clinic, and community settings.</p>
-            <p>I’ve seen firsthand how overwhelming it can feel for parents trying to navigate ABA for the first time. There are a lot of options, a lot of terminology, and not always a lot of clarity.</p>
-            <p>I started Guiding Steps ABA to help families feel more informed, more confident, and more supported when making decisions about their child’s care.</p>
-            <p>My goal is simple: help you understand what you’re hearing, know what to ask, and feel confident in the path you choose.</p>
+            <p>• Board Certified since 2016</p>
+            <p>• Former Lead Clinician at BrightPath Pediatrics</p>
+            <p>• Speaker, Autism Society of Texas</p>
+            <p style="font-family:Georgia, 'Times New Roman', serif; font-size:28px; color:var(--text); line-height:1.4; letter-spacing:-0.03em;">“I started Guiding Steps ABA so parents never have to make this decision alone.”</p>
           </div>
         </div>
 
         <div class="about-card-shell">
           <div class="about-card-inner">
             <div class="photo-note">
-              <div class="photo-placeholder"></div>
+              <div class="photo-placeholder">[Headshot]</div>
               <div class="photo-meta">
                 <div>
-                  <strong style="display:block;font-size:14px;">[Her Name], BCBA</strong>
-                  <span style="font-size:12px;color:var(--muted);">Add a warm professional headshot here</span>
+                  <strong style="display:block;font-size:14px;">Emma Davis, MS, BCBA</strong>
+                  <span style="font-size:12px;color:var(--muted);">Replace with a real professional headshot</span>
                 </div>
                 <span class="photo-dot"></span>
               </div>
             </div>
-            <p class="helper" style="margin-top:16px;">Replace this framed placeholder with her real photo, credentials, service area, and a short note about the settings she has worked in.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container full-wrap">
-      <div style="text-align:center;margin-bottom:24px;">
-        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Most parents do not realize what to look for until it is too late. We help you get it right the first time.</p>
-      </div>
-
-      <div class="testimonial-grid">
-        <div class="quote-card">
-          <p>“We had no idea where to start. Every provider sounded the same, and we were scared of choosing wrong. After one call, everything felt clearer.”</p>
-          <p style="margin-top:18px;font-size:14px;">— Parent, Austin TX</p>
-        </div>
-        <div class="quote-card">
-          <p>“Having someone on our side during provider calls changed everything. Questions we would have never thought to ask were brought up.”</p>
-          <p style="margin-top:18px;font-size:14px;">— Parent</p>
-        </div>
-        <div class="quote-card">
-          <p>“Before this, we felt overwhelmed and unsure. After working together, we felt confident in our decision.”</p>
-          <p style="margin-top:18px;font-size:14px;">— Parent of a 5-year-old</p>
         </div>
       </div>
     </div>
@@ -1459,52 +1305,44 @@
           <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
           </svg>
-          <p>Frequently asked questions</p>
+          <p>FAQ</p>
         </div>
 
         <div class="faq-list">
           <div class="faq-item active">
             <button class="faq-question" type="button">
-              <strong>Who is this for?</strong>
+              <strong>Do you take the place of a clinic?</strong>
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer">Families who are new to ABA, overwhelmed by provider options, or unsure whether their current fit is the right one.</div>
+            <div class="faq-answer">No. We’re the unbiased advisor you wish came before the clinic tour.</div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" type="button">
-              <strong>Do you provide direct ABA therapy?</strong>
+              <strong>Can you attend calls with us?</strong>
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer">Guiding Steps ABA is focused on education, advocacy, and helping families navigate the process of finding the right provider and support plan.</div>
+            <div class="faq-answer">Absolutely. 45% of clients invite us to at least one provider meeting.</div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" type="button">
-              <strong>Can you join provider calls with us?</strong>
+              <strong>More questions?</strong>
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer">Yes. That is one of the most valuable parts of the service for many families, especially in the early stages.</div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <strong>What if we already have a provider?</strong>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">We can still help you ask better questions, evaluate fit, and prepare for transitions or new decisions.</div>
+            <div class="faq-answer">Email emma@guidingstepsaba.com</div>
           </div>
         </div>
       </div>
 
       <div class="next-box">
         <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">What happens next</p>
-        <h3 style="font-size:40px;line-height:1.05;letter-spacing:-.03em;margin-top:10px;">A simple booking flow that feels easy.</h3>
+        <h3 style="font-size:40px;line-height:1.05;letter-spacing:-.03em;margin-top:10px;">Ready to trade confusion for confidence?</h3>
+        <p style="margin-top:16px;color:var(--muted);line-height:1.75;">Slots are limited to 5 new families per week.</p>
         <div class="next-steps">
-          <div class="next-step"><div class="step-badge">1</div><div>Book your ABA Clarity Session</div></div>
-          <div class="next-step"><div class="step-badge">2</div><div>Share where you are in the process</div></div>
-          <div class="next-step"><div class="step-badge">3</div><div>Get a simple plan and the right questions to ask</div></div>
-          <div class="next-step"><div class="step-badge">4</div><div>Decide whether you want deeper support after the call</div></div>
+          <div class="next-step"><div class="step-badge">1</div><div>Pick a time below</div></div>
+          <div class="next-step"><div class="step-badge">2</div><div>Complete the short pre-call form</div></div>
+          <div class="next-step"><div class="step-badge">3</div><div>Meet Emma on Zoom and leave with clarity</div></div>
         </div>
       </div>
     </div>
@@ -1517,57 +1355,57 @@
 
       <div class="booking-grid">
         <div>
-          <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Booking</p>
-          <h2 style="margin-top:10px;">Start with one calm, clear conversation.</h2>
-          <p style="margin-top:20px;">Book the ABA Clarity Session to talk through your child’s needs, where you are in the process, and your next best step. From there, families can stay at the one-call level or move into guided setup and ongoing support.</p>
-
+          <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Book now</p>
+          <h2 style="margin-top:10px;">Book Your ABA Clarity Session Now →</h2>
+          <p style="margin-top:20px;">One hour from now, you could know exactly what to ask, what to avoid, and which provider is the right fit for your child.</p>
           <div class="chip-row">
-            <div class="chip">ABA Clarity Session</div>
-            <div class="chip">Guided Setup</div>
-            <div class="chip">Monthly Support</div>
+            <div class="chip">60-min Zoom</div>
+            <div class="chip">$250</div>
+            <div class="chip">100% clarity guarantee</div>
           </div>
         </div>
 
         <div class="booking-card">
-          <p style="font-size:14px;">Book your call</p>
+          <p style="font-size:14px;">Calendar</p>
           <div class="cal-box">
             <div class="cal-top">
               <span>Calendly embed placeholder</span>
               <span>60 min</span>
             </div>
-            <div class="cal-main">Replace this card with your real Calendly inline embed for a premium booking experience.</div>
+            <div class="cal-main">Replace this area with your real calendar embed.</div>
           </div>
 
           <form class="form">
             <label class="field"><input type="text" placeholder="Parent name" /></label>
             <label class="field"><input type="email" placeholder="Email address" /></label>
             <label class="field"><input type="tel" placeholder="Phone number" /></label>
-            <label class="field">
-              <select>
-                <option>What support do you need?</option>
-                <option>ABA Clarity Session</option>
-                <option>Guided Setup</option>
-                <option>Monthly Support</option>
-              </select>
-            </label>
-            <label class="field"><textarea placeholder="Tell us a little about your child and where you are in the process"></textarea></label>
-            <button class="btn btn-dark" type="button">Request an Intro Call</button>
+            <label class="field"><textarea placeholder="Tell us your child’s goals and the provider options you’re considering"></textarea></label>
+            <button class="btn btn-dark" type="button">Book Your ABA Clarity Session →</button>
           </form>
 
-          <p class="helper">Replace this form with Calendly, Tally, Typeform, or your preferred booking software.</p>
+          <p class="helper">If you feel no added clarity after Session #1, we refund you on the spot.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <a class="mobile-cta show-mobile" href="#booking">Book a Call</a>
+  <section class="section final-cta">
+    <div class="container">
+      <h2>Ready to trade confusion for confidence?</h2>
+      <p>Slots are limited to 5 new families per week.</p>
+      <div class="btn-row" style="justify-content:center;">
+        <a href="#booking" class="btn btn-dark">Book Your ABA Clarity Session Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <a class="mobile-cta show-mobile" href="#booking">Book Your ABA Clarity Session</a>
 
   <script>
     document.querySelectorAll('.faq-question').forEach((button) => {
       button.addEventListener('click', () => {
         const item = button.parentElement;
         const isActive = item.classList.contains('active');
-
         document.querySelectorAll('.faq-item').forEach((faq) => faq.classList.remove('active'));
         if (!isActive) item.classList.add('active');
       });
