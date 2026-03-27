@@ -1,804 +1,1577 @@
-import { useEffect, useRef, useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guiding Steps ABA</title>
+  <meta
+    name="description"
+    content="Guiding Steps ABA helps families choose the right ABA provider with confidence through calm, clear consulting support."
+  />
+  <style>
+    :root {
+      --bg: #dcecff;
+      --card: rgba(255, 255, 255, 0.82);
+      --card-strong: #ffffff;
+      --text: #0f172a;
+      --muted: #5b6472;
+      --line: rgba(15, 23, 42, 0.1);
+      --blue: #2f6df6;
+      --blue-soft: #e8f1ff;
+      --yellow: #ffd768;
+      --red: #ff8c7a;
+      --dark: #0f172a;
+      --cream: #fff7e2;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+      --radius: 28px;
+      --radius-sm: 22px;
+      --max: 1180px;
+    }
 
-function Reveal({ children, delay = 0, className = "" }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+    * {
+      box-sizing: border-box;
+    }
 
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
+    html {
+      scroll-behavior: smooth;
+    }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 }
-    );
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
 
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0px)" : "translateY(22px)",
-        transition: `opacity 700ms ease ${delay}ms, transform 700ms ease ${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-function FAQItem({ item, index }) {
-  const [open, setOpen] = useState(index === 0);
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-  return (
-    <div className="rounded-[1.35rem] bg-[#f8fbff] p-5 transition duration-300 hover:shadow-md sm:rounded-[1.5rem]">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-4 text-left"
-      >
-        <h3 className="text-lg font-semibold">{item.q}</h3>
-        <span
-          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-medium text-slate-700 transition duration-300"
-          style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)" }}
-        >
-          +
-        </span>
-      </button>
-      <div
-        style={{
-          maxHeight: open ? "220px" : "0px",
-          opacity: open ? 1 : 0,
-          marginTop: open ? "12px" : "0px",
-          transition: "all 320ms ease",
-          overflow: "hidden",
-        }}
-      >
-        <p className="text-sm leading-7 text-slate-600">{item.a}</p>
-      </div>
-    </div>
-  );
-}
+    .topbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 0;
+      backdrop-filter: blur(10px);
+    }
 
-function ShimmerButton({ href, children, dark = true }) {
-  const base = dark
-    ? "group relative overflow-hidden rounded-full bg-slate-900 px-6 py-3 text-center text-sm font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:shadow-2xl"
-    : "group relative overflow-hidden rounded-full border border-black/10 bg-white/80 px-6 py-3 text-center text-sm font-semibold text-slate-900 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-xl";
+    .topbar {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 14px 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-  return (
-    <a href={href} className={base}>
-      <span className="pointer-events-none absolute inset-y-0 left-[-35%] w-[32%] -skew-x-12 bg-white/20 transition duration-700 group-hover:left-[110%]" />
-      <span className="relative inline-flex items-center justify-center gap-2">
-        {children}
-        <span className="transition duration-300 group-hover:translate-x-1">→</span>
-      </span>
-    </a>
-  );
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
 
-function PriceCard({ title, price, description, bullets, featured = false, badge }) {
-  return (
-    <div
-      className={`relative rounded-[1.8rem] border p-6 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-7 ${
-        featured
-          ? "border-slate-900 bg-slate-900 text-white"
-          : "border-black/10 bg-white/80 text-slate-900"
-      }`}
-    >
-      {badge && (
-        <div
-          className={`absolute right-5 top-5 rounded-full px-3 py-1 text-xs font-semibold ${
-            featured ? "bg-white text-slate-900" : "bg-blue-100 text-blue-700"
-          }`}
-        >
-          {badge}
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: var(--dark);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-text strong,
+    .brand-text span {
+      display: block;
+    }
+
+    .brand-text strong {
+      font-size: 14px;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 420px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .btn,
+    button.btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -35%;
+      width: 32%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.18);
+      transform: skewX(-18deg);
+      transition: left 0.7s ease;
+    }
+
+    .btn:hover::after {
+      left: 110%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.15);
+    }
+
+    .btn-dark {
+      background: var(--dark);
+      color: white;
+    }
+
+    .btn-light {
+      background: rgba(255, 255, 255, 0.82);
+      border-color: var(--line);
+      color: var(--text);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 56px 0 60px;
+    }
+
+    .blur {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(80px);
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    .blur.one {
+      width: 300px;
+      height: 300px;
+      background: var(--yellow);
+      left: -70px;
+      top: 20px;
+    }
+
+    .blur.two {
+      width: 340px;
+      height: 340px;
+      background: var(--red);
+      right: -60px;
+      top: 80px;
+      opacity: 0.23;
+    }
+
+    .blur.three {
+      width: 340px;
+      height: 340px;
+      background: #7cc7ff;
+      left: 32%;
+      top: 100px;
+      opacity: 0.24;
+    }
+
+    .hero-grid,
+    .two-col,
+    .pricing-grid,
+    .cards-3,
+    .cards-4,
+    .questions-grid,
+    .about-grid,
+    .faq-grid,
+    .booking-grid,
+    .testimonial-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #10b981;
+    }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      max-width: 760px;
+      margin-top: 22px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 5vw, 56px);
+    }
+
+    h3, p {
+      margin: 0;
+    }
+
+    .underline-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .underline-wrap svg {
+      position: absolute;
+      left: 0;
+      bottom: -12px;
+      width: 100%;
+    }
+
+    .hero-copy p.lead,
+    .section-copy p,
+    .dark-copy p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .hero-copy p.lead {
+      max-width: 760px;
+      margin-top: 24px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+      max-width: 760px;
+    }
+
+    .mini-card,
+    .card,
+    .soft-card,
+    .faq-item,
+    .step-card,
+    .quote-card,
+    .list-card,
+    .booking-card,
+    .offer-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      backdrop-filter: blur(12px);
+    }
+
+    .mini-card {
+      padding: 18px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card {
+      padding: 28px;
+    }
+
+    .hero-panel {
+      position: relative;
+    }
+
+    .offer-shell {
+      padding: 14px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .offer-inner {
+      background: #f8fbff;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 22px;
+    }
+
+    .offer-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .offer-head small,
+    .muted {
+      color: var(--muted);
+    }
+
+    .pill-price,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pill-price {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .white-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+      margin-top: 22px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .stack-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--blue-soft);
+      border-radius: 18px;
+      padding: 14px 14px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .bullet {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--blue);
+      flex: 0 0 auto;
+    }
+
+    .dark-panel {
+      background: var(--dark);
+      color: white;
+      border-radius: 28px;
+      padding: 22px;
+      margin-top: 18px;
+    }
+
+    .dark-panel .muted {
+      color: rgba(255,255,255,0.68);
+    }
+
+    .bar-row {
+      margin-top: 14px;
+    }
+
+    .bar-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      gap: 18px;
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: white;
+    }
+
+    section.section {
+      padding: 22px 0;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow p {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-copy {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .cards-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .cards-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .step-card,
+    .offer-card,
+    .soft-card,
+    .quote-card,
+    .list-card,
+    .booking-card {
+      padding: 26px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .step-card:hover,
+    .offer-card:hover,
+    .soft-card:hover,
+    .quote-card:hover,
+    .list-card:hover,
+    .booking-card:hover,
+    .mini-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.11);
+    }
+
+    .step-num {
+      color: #9aa4b2;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+    }
+
+    .step-card h3,
+    .soft-card h3,
+    .offer-card h3,
+    .faq-item h3,
+    .question-panel h3 {
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-top: 14px;
+    }
+
+    .step-card p,
+    .soft-card p,
+    .offer-card p,
+    .question-panel p,
+    .quote-card p,
+    .list-card p,
+    .booking-card p,
+    .faq-answer {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .offer-card.featured {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .offer-card.featured p,
+    .offer-card.featured .meta,
+    .offer-card.featured .stack-item {
+      color: rgba(255,255,255,0.86);
+    }
+
+    .offer-card.featured .stack-item {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .offer-card.featured .bullet {
+      background: white;
+    }
+
+    .offer-card .price {
+      font-size: 42px;
+      font-weight: 700;
+      margin-top: 16px;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .tag {
+      background: #dbeafe;
+      color: #1d4ed8;
+      position: absolute;
+      top: 22px;
+      right: 22px;
+    }
+
+    .offer-card.featured .tag {
+      background: white;
+      color: var(--dark);
+    }
+
+    .two-col {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: stretch;
+    }
+
+    .dark-card {
+      background: var(--dark);
+      color: white;
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+    }
+
+    .dark-card p,
+    .dark-card .small {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .dark-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .dark-list div {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .full-wrap {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .cards-4 .list-card p:first-child {
+      color: var(--text);
+      font-size: 26px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .questions-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .question-panel {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 30px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+    }
+
+    .question-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .question-list div {
+      background: #f8fbff;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+    }
+
+    .about-text {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .about-card-shell {
+      background: #dbeafe;
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
+      position: relative;
+    }
+
+    .about-card-inner {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .photo-note {
+      max-width: 320px;
+      margin: 0 auto;
+      background: #fffaf0;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 12px;
+      transform: rotate(-2deg);
+      box-shadow: 0 16px 45px rgba(15, 23, 42, 0.14);
+    }
+
+    .photo-placeholder {
+      aspect-ratio: 4 / 4.8;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #f5f9ff, #e7f1ff);
+    }
+
+    .photo-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 0 4px;
+    }
+
+    .photo-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(255, 215, 104, 0.8);
+      flex: 0 0 auto;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .quote-card p:first-child {
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.65;
+    }
+
+    .faq-grid {
+      grid-template-columns: 1fr 0.95fr;
+      align-items: start;
+    }
+
+    .faq-box,
+    .next-box {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 32px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+    }
+
+    .next-box {
+      background: var(--cream);
+      position: relative;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .faq-item {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .faq-question strong {
+      font-size: 20px;
+    }
+
+    .faq-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      background: white;
+      transition: transform 0.25s ease;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.32s ease, opacity 0.32s ease, padding 0.32s ease;
+      opacity: 0;
+      padding: 0 22px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 260px;
+      opacity: 1;
+      padding: 0 22px 22px;
+    }
+
+    .next-steps {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .next-step {
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      padding: 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .step-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--dark);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .booking-wrap {
+      background: var(--dark);
+      color: white;
+      border-radius: 34px;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 0.28);
+    }
+
+    .booking-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .booking-wrap .blur-book-a,
+    .booking-wrap .blur-book-b {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .blur-book-a {
+      width: 200px;
+      height: 200px;
+      background: var(--blue);
+      top: -40px;
+      right: -30px;
+      opacity: 0.32;
+    }
+
+    .blur-book-b {
+      width: 200px;
+      height: 200px;
+      background: var(--yellow);
+      bottom: -80px;
+      left: 20px;
+      opacity: 0.18;
+    }
+
+    .booking-wrap p {
+      color: rgba(255,255,255,0.76);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .chip {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .booking-card {
+      background: white;
+      color: var(--text);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+    }
+
+    .cal-box {
+      margin-top: 14px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      padding: 8px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    .cal-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--muted);
+      padding: 10px 12px;
+    }
+
+    .cal-main {
+      min-height: 320px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ffffff, #eef5ff);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .field,
+    .field textarea,
+    .field select,
+    .field input {
+      width: 100%;
+      font: inherit;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      border-radius: 18px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(15, 23, 42, 0.28);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .helper {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      background: var(--dark);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 999px;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.24);
+    }
+
+    .hide-mobile {
+      display: inline-flex;
+    }
+
+    .show-mobile {
+      display: none;
+    }
+
+    @media (max-width: 1100px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .two-col,
+      .pricing-grid,
+      .cards-3,
+      .cards-4,
+      .questions-grid,
+      .about-grid,
+      .faq-grid,
+      .booking-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .topbar {
+        border-radius: 24px;
+        padding: 12px;
+      }
+
+      .brand-text span {
+        max-width: 180px;
+      }
+
+      .hero {
+        padding-top: 22px;
+      }
+
+      .card,
+      .faq-box,
+      .next-box,
+      .question-panel,
+      .full-wrap,
+      .booking-wrap,
+      .dark-card,
+      .offer-card,
+      .step-card,
+      .quote-card,
+      .list-card,
+      .booking-card {
+        padding: 22px;
+      }
+
+      .offer-shell {
+        border-radius: 28px;
+        padding: 10px;
+      }
+
+      .offer-inner {
+        border-radius: 24px;
+        padding: 18px;
+      }
+
+      .hide-mobile {
+        display: none;
+      }
+
+      .show-mobile,
+      .mobile-cta {
+        display: block;
+      }
+
+      body {
+        padding-bottom: 88px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar-wrap">
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-badge">G</div>
+          <div class="brand-text">
+            <strong>Guiding Steps ABA</strong>
+            <span>Helping families choose the right ABA provider with confidence</span>
+          </div>
         </div>
-      )}
-      <p className={`text-sm font-medium uppercase tracking-[0.16em] ${featured ? "text-white/60" : "text-slate-500"}`}>
-        {title}
-      </p>
-      <div className="mt-4 flex items-end gap-2">
-        <span className="text-4xl font-semibold tracking-tight">{price}</span>
-      </div>
-      <p className={`mt-4 text-sm leading-7 ${featured ? "text-white/80" : "text-slate-600"}`}>
-        {description}
-      </p>
-      <div className="mt-6 space-y-3">
-        {bullets.map((bullet) => (
-          <div
-            key={bullet}
-            className={`flex items-start gap-3 rounded-2xl px-3 py-3 text-sm ${
-              featured ? "bg-white/10 text-white" : "bg-[#f8fbff] text-slate-800"
-            }`}
-          >
-            <div className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${featured ? "bg-white" : "bg-blue-600"}`} />
-            <span>{bullet}</span>
-          </div>
-        ))}
+
+        <nav>
+          <a href="#how-it-works">How it works</a>
+          <a href="#offers">Offers</a>
+          <a href="#why-us">Why us</a>
+          <a href="#about">About</a>
+          <a href="#booking">Book</a>
+        </nav>
+
+        <a href="#booking" class="btn btn-dark hide-mobile">Book a call</a>
       </div>
     </div>
-  );
-}
+  </div>
 
-export default function GuidingStepsABAHomepage() {
-  const nav = [
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Offers", href: "#offers" },
-    { label: "Why us", href: "#why-us" },
-    { label: "About", href: "#about" },
-    { label: "Book", href: "#booking" },
-  ];
+  <section class="hero">
+    <div class="blur one"></div>
+    <div class="blur two"></div>
+    <div class="blur three"></div>
 
-  const steps = [
-    {
-      number: "01",
-      title: "Start with clarity",
-      body: "We learn about your child, your goals, and where you are in the process so the next step feels calmer and more clear.",
-    },
-    {
-      number: "02",
-      title: "Know what actually matters",
-      body: "We explain ABA in plain English, help you compare providers, and show you what to ask before you commit.",
-    },
-    {
-      number: "03",
-      title: "Move forward with support",
-      body: "You leave with a simple action plan, more confidence, and the option for deeper support if you want help beyond the first call.",
-    },
-  ];
-
-  const pricing = [
-    {
-      title: "ABA Clarity Session",
-      price: "$250",
-      description:
-        "A focused first step for families who feel overwhelmed and want expert guidance before choosing a provider.",
-      bullets: [
-        "60-minute consult",
-        "Plain-English guidance",
-        "Questions to ask providers",
-        "1-page next-step plan",
-      ],
-      featured: true,
-      badge: "Start here",
-    },
-    {
-      title: "Guided Setup",
-      price: "$1,000+",
-      description:
-        "A deeper done-with-you package for families comparing providers, reviewing recommendations, and making a final decision.",
-      bullets: [
-        "Provider comparison support",
-        "Treatment plan review",
-        "Red flag guidance",
-        "Decision support through setup",
-      ],
-      featured: false,
-      badge: "Most support",
-    },
-    {
-      title: "Monthly Support",
-      price: "$150/mo",
-      description:
-        "Ongoing support for families who want a trusted expert in their corner as questions come up over time.",
-      bullets: [
-        "Monthly check-ins",
-        "Questions between meetings",
-        "Help during transitions",
-        "Confidence as needs change",
-      ],
-      featured: false,
-      badge: "Ongoing care",
-    },
-  ];
-
-  const whyUs = [
-    {
-      title: "Not a clinic",
-      text: "We do not push a provider. We help you make a confident decision that feels right for your child and family.",
-    },
-    {
-      title: "Calm, clear, human",
-      text: "Families do not need more jargon. They need someone who can explain what matters in a way that feels grounded and supportive.",
-    },
-    {
-      title: "The trusted layer",
-      text: "Think of us as the advisor families wish they had before the first intake call, not after they already feel stuck.",
-    },
-  ];
-
-  const firstTen = [
-    "Support for Austin-area families navigating ABA for the first time",
-    "Referral-friendly for clinics, pediatricians, and parent communities",
-    "Available for parent education, provider questions, and early meeting support",
-  ];
-
-  const contentPillars = [
-    "Things parents do not realize about ABA",
-    "Red flags when choosing a provider",
-    "What I would ask if this were my child",
-    "How many hours are appropriate and why more is not always better",
-  ];
-
-  const providerQuestions = [
-    "What happens if an RBT does not show up to session?",
-    "How many clients does each BCBA oversee?",
-    "Are sessions led by an RBT, a BCBA, or both?",
-    "How much parent involvement is expected?",
-    "Do you prioritize assent and reinforcement-based care?",
-    "Do you offer make-up days?",
-    "Can services happen in home, clinic, school, or community settings?",
-    "Do you support collaboration with OT and speech?",
-    "Can you work on daily living skills?",
-  ];
-
-  const familyQuestions = [
-    "What do I need to do to get started?",
-    "What will my child be doing all day?",
-    "How many hours are appropriate?",
-    "How many therapists will work with my child?",
-    "What happens if we go on vacation?",
-    "Should we choose home, clinic, school, or community services?",
-    "What can ABA help with and what can it not do?",
-    "What is the purpose of ABA?",
-    "Can ABA be applied across the lifespan?",
-  ];
-
-  const faqs = [
-    {
-      q: "Who is this for?",
-      a: "Families who are new to ABA, overwhelmed by provider options, or unsure whether their current fit is the right one.",
-    },
-    {
-      q: "Do you provide direct ABA therapy?",
-      a: "Guiding Steps ABA is focused on education, advocacy, and helping families navigate the process of finding the right provider and support plan.",
-    },
-    {
-      q: "Can you join provider calls with us?",
-      a: "Yes. That is one of the most valuable parts of the service for many families, especially in the early stages.",
-    },
-    {
-      q: "What if we already have a provider?",
-      a: "We can still help you ask better questions, evaluate fit, and prepare for transitions or new decisions.",
-    },
-  ];
-
-  const testimonials = [
-    {
-      quote:
-        "We had no idea where to start. Every provider sounded the same, and we were scared of choosing wrong. After one call, everything felt clearer.",
-      author: "Parent, Austin TX",
-    },
-    {
-      quote:
-        "Having someone on our side during provider calls changed everything. Questions we would have never thought to ask were brought up.",
-      author: "Parent",
-    },
-    {
-      quote:
-        "Before this, we felt overwhelmed and unsure. After working together, we felt confident in our decision.",
-      author: "Parent of a 5-year-old",
-    },
-  ];
-
-  const doodles = {
-    squiggleBlue: "M4 16C44 7 83 5 122 8C161 11 194 14 226 20",
-    squiggleRed: "M6 19C43 6 76 4 113 7C152 10 186 12 216 16",
-    circle: "M48 7C26 8 8 28 8 51C8 74 27 93 50 94C73 94 92 75 92 52C92 29 71 6 48 7Z",
-    star: "M50 10L58 37L86 37L63 54L71 82L50 65L29 82L37 54L14 37L42 37L50 10Z",
-    arrow: "M6 38C53 8 102 5 158 23C168 26 179 31 191 38M167 17L192 38L162 44",
-  };
-
-  const SectionEyebrow = ({ children }) => (
-    <div className="mb-5 flex items-center gap-3">
-      <svg className="h-8 w-24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d={doodles.squiggleBlue} stroke="#2f6df6" strokeWidth="6" strokeLinecap="round" />
-      </svg>
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">{children}</p>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen bg-[#dcecff] text-slate-900 [font-family:Inter,ui-sans-serif,system-ui,sans-serif]">
-      <div className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl rounded-[1.4rem] border border-black/10 bg-white/75 px-3 py-3 shadow-lg backdrop-blur-xl sm:rounded-full sm:px-4">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
-                G
-              </div>
-              <div>
-                <p className="text-sm font-semibold">Guiding Steps ABA</p>
-                <p className="text-xs text-slate-500">Helping families choose the right ABA provider with confidence</p>
-              </div>
-            </div>
-
-            <div className="hidden items-center gap-6 lg:flex">
-              {nav.map((item) => (
-                <a key={item.label} href={item.href} className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
-                  {item.label}
-                </a>
-              ))}
-            </div>
-
-            <a
-              href="#booking"
-              className="rounded-full bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:px-4 sm:text-sm"
-            >
-              Book a call
-            </a>
-          </div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow-pill">
+          <span class="dot"></span>
+          Led by a BCBA with 7+ years of experience
         </div>
-      </div>
 
-      <Reveal>
-        <section className="relative overflow-hidden px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
-          <div className="absolute left-[-5%] top-0 h-72 w-72 rounded-full bg-[#ffd768] opacity-65 blur-3xl" />
-          <div className="absolute right-[-2%] top-16 h-80 w-80 rounded-full bg-[#ff8c7a] opacity-30 blur-3xl" />
-          <div className="absolute left-[30%] top-[20%] h-80 w-80 rounded-full bg-[#7cc7ff] opacity-35 blur-3xl" />
-
-          <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur">
-                <span className="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                Led by a BCBA with 7+ years of experience
-              </div>
-
-              <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[0.98] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl [font-family:Georgia,serif]">
-                We help you choose the right ABA provider with <span className="relative inline-block">confidence
-                  <svg className="absolute -bottom-3 left-0 w-full" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d={doodles.squiggleBlue} stroke="#2f6df6" strokeWidth="6" strokeLinecap="round" />
-                  </svg>
-                </span>, not confusion.
-              </h1>
-
-              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8">
-                Guiding Steps ABA is a calm, clear consulting service for families navigating ABA for the first time. We help you understand the process, ask the right questions, and move forward with more confidence.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ShimmerButton href="#booking">Book the ABA Clarity Session</ShimmerButton>
-                <ShimmerButton href="#offers" dark={false}>See pricing and support</ShimmerButton>
-              </div>
-
-              <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
-                {[
-                  "Plain-English guidance",
-                  "Provider comparison support",
-                  "Meeting advocacy",
-                ].map((item, index) => (
-                  <div
-                    key={item}
-                    className="relative rounded-[1.5rem] border border-black/10 bg-white/78 p-4 text-sm font-medium shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-                  >
-                    {index === 0 && (
-                      <svg className="absolute -left-2 -top-2 h-8 w-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d={doodles.circle} fill="#ffd768" stroke="#111827" strokeWidth="3" />
-                      </svg>
-                    )}
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative flex items-center justify-center">
-              <svg className="absolute -left-4 top-10 h-20 w-20 rotate-[-8deg]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d={doodles.star} fill="#ffd768" stroke="#111827" strokeWidth="3" />
-              </svg>
-              <svg className="absolute bottom-10 right-0 h-16 w-36 rotate-[6deg]" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d={doodles.squiggleRed} stroke="#ff6f61" strokeWidth="6" strokeLinecap="round" />
-              </svg>
-
-              <div className="w-full max-w-md rounded-[2rem] border border-black/10 bg-white/80 p-3 shadow-2xl backdrop-blur-xl sm:rounded-[2.2rem] sm:p-4">
-                <div className="rounded-[1.5rem] border border-black/10 bg-[#f8fbff] p-4 sm:rounded-[1.8rem] sm:p-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-sm text-slate-500">Signature offer</p>
-                      <h3 className="text-xl font-semibold sm:text-2xl">ABA Clarity Session</h3>
-                    </div>
-                    <div className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-                      $250
-                    </div>
-                  </div>
-
-                  <div className="mt-5 rounded-[1.35rem] bg-white p-4 shadow-sm sm:rounded-[1.75rem]">
-                    <p className="text-sm text-slate-500">What families get</p>
-                    <div className="mt-3 space-y-3">
-                      {[
-                        "60-minute consult",
-                        "Guidance in plain English",
-                        "Questions to ask providers",
-                        "A simple next-step plan",
-                      ].map((line) => (
-                        <div
-                          key={line}
-                          className="flex items-center gap-3 rounded-2xl bg-blue-50 px-3 py-3 text-sm font-medium text-slate-900 transition duration-300 hover:bg-white hover:shadow-md"
-                        >
-                          <div className="h-2.5 w-2.5 rounded-full bg-blue-600" />
-                          {line}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mt-4 rounded-[1.75rem] bg-slate-900 p-5 text-white shadow-sm">
-                    <p className="text-sm text-white/70">Why families book</p>
-                    <div className="mt-4 space-y-4">
-                      {[
-                        ["Confidence choosing a provider", "92%", "92%"],
-                        ["Help asking the right questions", "88%", "88%"],
-                        ["Support before the first intake call", "81%", "81%"],
-                      ].map(([label, value, width]) => (
-                        <div key={label}>
-                          <div className="flex justify-between text-sm">
-                            <span>{label}</span>
-                            <span>{value}</span>
-                          </div>
-                          <div className="mt-2 h-3 rounded-full bg-white/10">
-                            <div className="h-3 rounded-full bg-white" style={{ width }} />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="mt-4 text-center text-xs leading-5 text-slate-500">
-                    Swap these placeholders for your real proof points, testimonials, or local trust indicators.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={80}>
-        <section id="how-it-works" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-          <SectionEyebrow>How it works</SectionEyebrow>
-          <div className="grid gap-4 md:grid-cols-3">
-            {steps.map((step, index) => (
-              <div key={step.title} className="relative rounded-[1.6rem] border border-black/10 bg-white/80 p-5 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:rounded-[2rem] sm:p-6">
-                {index === 1 && (
-                  <svg className="absolute right-4 top-4 h-10 w-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d={doodles.circle} fill="#ffd768" stroke="#111827" strokeWidth="3" />
-                  </svg>
-                )}
-                <p className="text-sm font-semibold tracking-[0.16em] text-slate-400">{step.number}</p>
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight">{step.title}</h3>
-                <p className="mt-3 text-base leading-7 text-slate-700">{step.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={120}>
-        <section id="offers" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-          <SectionEyebrow>Offers and pricing</SectionEyebrow>
-          <div className="max-w-3xl">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
-              Start with one focused session, then choose the level of support you need.
-            </h2>
-            <p className="mt-5 text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
-              Most families do not need more information. They need someone to tell them what actually matters. This pricing ladder keeps the first step simple while giving you room to offer deeper support later.
-            </p>
-          </div>
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            {pricing.map((item) => (
-              <PriceCard key={item.title} {...item} />
-            ))}
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={150}>
-        <section id="why-us" className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-          <div className="rounded-[1.8rem] border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:p-8">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">Why families come to us</p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
-              Because this is a big decision, and it should not feel like guesswork.
-            </h2>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
-              Guiding Steps ABA is not trying to be another clinic. We are the calm, trusted layer above the noise. Families come to us when they want clarity, perspective, and support before they commit.
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {whyUs.map((item, idx) => (
-                <div key={item.title} className="relative rounded-[1.4rem] bg-[#f8fbff] p-4 shadow-inner transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:rounded-[1.75rem] sm:p-5">
-                  {idx === 2 && (
-                    <svg className="absolute -right-2 -top-2 h-10 w-10 rotate-[10deg]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d={doodles.star} fill="#ff8c7a" stroke="#111827" strokeWidth="3" />
-                    </svg>
-                  )}
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[2.25rem] border border-black/10 bg-slate-900 p-8 text-white shadow-xl">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/55">Early growth plan</p>
-            <div className="mt-5 space-y-3">
-              {firstTen.map((item) => (
-                <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-6 text-white/90 transition duration-300 hover:bg-white/10">
-                  {item}
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 rounded-3xl bg-white/10 p-5">
-              <p className="text-base font-medium">Built for referrals, trust, and parent peace of mind.</p>
-              <p className="mt-2 text-sm leading-6 text-white/70">
-                This section helps the site feel bigger than a single call. It shows families, clinics, and referral partners exactly where you fit in the process.
-              </p>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={170}>
-        <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="rounded-[2rem] border border-black/10 bg-white/82 p-6 shadow-xl backdrop-blur sm:rounded-[2.5rem] sm:p-10">
-            <div className="mb-6 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                Educational content is part of the trust engine. Teach first. Then the right families will come to you.
-              </p>
-            </div>
-
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {contentPillars.map((item, index) => (
-                <div
-                  key={index}
-                  className={`rounded-[1.45rem] bg-[#f8fbff] p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:rounded-[1.8rem] sm:p-6 ${
-                    index === 0 ? "rotate-[-1deg]" : index === 1 ? "rotate-[0.8deg]" : index === 2 ? "rotate-[-0.6deg]" : "rotate-[0.6deg]"
-                  }`}
-                >
-                  <p className="text-lg leading-8 text-slate-800">{item}</p>
-                  <p className="mt-4 text-sm font-medium text-slate-500">Future Reel or blog topic</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={200}>
-        <section id="questions" className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="mb-5 flex items-center gap-3">
-            <svg className="h-8 w-24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d={doodles.squiggleRed} stroke="#ff6f61" strokeWidth="6" strokeLinecap="round" />
+        <h1>
+          We help you choose the right ABA provider with
+          <span class="underline-wrap">
+            confidence
+            <svg viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
             </svg>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Questions that matter</p>
-          </div>
+          </span>, not confusion.
+        </h1>
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-[1.8rem] border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:p-8">
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions to ask providers</h2>
-              <div className="mt-6 grid gap-3">
-                {providerQuestions.map((item) => (
-                  <div key={item} className="rounded-2xl bg-[#f8fbff] px-4 py-4 text-sm leading-6 text-slate-800 transition duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
+        <p class="lead">
+          Guiding Steps ABA is a calm, clear consulting service for families navigating ABA for the first time. We help you understand the process, ask the right questions, and move forward with more confidence.
+        </p>
 
-            <div className="rounded-[1.8rem] border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:p-8">
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions families often have</h2>
-              <div className="mt-6 grid gap-3">
-                {familyQuestions.map((item) => (
-                  <div key={item} className="rounded-2xl bg-[#f8fbff] px-4 py-4 text-sm leading-6 text-slate-800 transition duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
+        <div class="btn-row">
+          <a href="#booking" class="btn btn-dark">Book the ABA Clarity Session</a>
+          <a href="#offers" class="btn btn-light">See pricing and support</a>
+        </div>
 
-      <Reveal delay={230}>
-        <section id="about" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="rounded-[2rem] border border-black/10 bg-white/82 p-6 shadow-xl backdrop-blur sm:rounded-[2.5rem] sm:p-12">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div class="mini-grid">
+          <div class="mini-card">Plain-English guidance</div>
+          <div class="mini-card">Provider comparison support</div>
+          <div class="mini-card">Meeting advocacy</div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="offer-shell">
+          <div class="offer-inner">
+            <div class="offer-head">
               <div>
-                <SectionEyebrow>About your guide</SectionEyebrow>
-                <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
-                  Hi, I’m [Her Name].
-                </h2>
-                <div className="mt-5 space-y-4 text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
-                  <p>
-                    I’m a Board Certified Behavior Analyst with over 7 years of experience working with children and families across home, clinic, and community settings.
-                  </p>
-                  <p>
-                    I’ve seen firsthand how overwhelming it can feel for parents trying to navigate ABA for the first time. There are a lot of options, a lot of terminology, and not always a lot of clarity.
-                  </p>
-                  <p>
-                    I started Guiding Steps ABA to help families feel more informed, more confident, and more supported when making decisions about their child’s care.
-                  </p>
-                  <p>
-                    My goal is simple: help you understand what you’re hearing, know what to ask, and feel confident in the path you choose.
-                  </p>
-                </div>
+                <small>Signature offer</small>
+                <h3>ABA Clarity Session</h3>
               </div>
+              <div class="pill-price">$250</div>
+            </div>
 
-              <div className="relative rounded-[1.6rem] bg-blue-100 p-5 shadow-inner sm:rounded-[2rem] sm:p-6">
-                <svg className="absolute -left-3 -top-3 h-10 w-10 rotate-[-12deg]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d={doodles.star} fill="#ffd768" stroke="#111827" strokeWidth="3" />
-                </svg>
-                <div className="rounded-[1.25rem] bg-white p-5 shadow-sm sm:rounded-[1.5rem] sm:p-6">
-                  <div className="mx-auto w-full max-w-[320px] rotate-[-2deg] rounded-[1.35rem] border border-black/10 bg-[#fffaf0] p-3 shadow-[0_16px_45px_rgba(15,23,42,0.14)] transition duration-300 hover:rotate-0 hover:-translate-y-1">
-                    <div className="aspect-[4/4.8] rounded-[1rem] border border-black/10 bg-[linear-gradient(135deg,#f5f9ff,#e7f1ff)]" />
-                    <div className="mt-3 flex items-center justify-between gap-3 px-1">
-                      <div>
-                        <p className="text-sm font-semibold text-slate-800">[Her Name], BCBA</p>
-                        <p className="text-xs text-slate-500">Add a warm professional headshot here</p>
-                      </div>
-                      <div className="h-7 w-7 rounded-full bg-yellow-300/80" />
-                    </div>
-                  </div>
-                  <p className="mt-4 text-sm text-slate-500">
-                    Replace this framed placeholder with her real photo, credentials, service area, and a short note about the settings she has worked in.
-                  </p>
-                </div>
+            <div class="white-panel">
+              <small class="muted">What families get</small>
+              <div class="stack">
+                <div class="stack-item"><span class="bullet"></span>60-minute consult</div>
+                <div class="stack-item"><span class="bullet"></span>Guidance in plain English</div>
+                <div class="stack-item"><span class="bullet"></span>Questions to ask providers</div>
+                <div class="stack-item"><span class="bullet"></span>A simple next-step plan</div>
               </div>
             </div>
+
+            <div class="dark-panel">
+              <small class="muted">Why families book</small>
+
+              <div class="bar-row">
+                <div class="bar-meta"><span>Confidence choosing a provider</span><span>92%</span></div>
+                <div class="bar"><span style="width: 92%"></span></div>
+              </div>
+
+              <div class="bar-row">
+                <div class="bar-meta"><span>Help asking the right questions</span><span>88%</span></div>
+                <div class="bar"><span style="width: 88%"></span></div>
+              </div>
+
+              <div class="bar-row">
+                <div class="bar-meta"><span>Support before the first intake call</span><span>81%</span></div>
+                <div class="bar"><span style="width: 81%"></span></div>
+              </div>
+            </div>
+
+            <p class="helper" style="text-align:center;">Swap these placeholders for your real proof points, testimonials, or local trust indicators.</p>
           </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={250}>
-        <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="rounded-[2rem] border border-black/10 bg-white/82 p-6 shadow-xl backdrop-blur sm:rounded-[2.5rem] sm:p-10">
-            <div className="mb-6 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                Most parents do not realize what to look for until it is too late. We help you get it right the first time.
-              </p>
-            </div>
-
-            <div className="grid gap-5 md:grid-cols-3">
-              {testimonials.map((item, index) => (
-                <div
-                  key={index}
-                  className={`rounded-[1.45rem] bg-[#f8fbff] p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:rounded-[1.8rem] sm:p-6 ${
-                    index === 0 ? "rotate-[-1.2deg]" : index === 1 ? "rotate-[0.8deg]" : "rotate-[-0.6deg]"
-                  }`}
-                >
-                  <p className="text-lg leading-8 text-slate-800">“{item.quote}”</p>
-                  <p className="mt-5 text-sm font-medium text-slate-500">— {item.author}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={280}>
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
-            <div className="rounded-[2.25rem] border border-black/10 bg-white/80 p-8 shadow-sm">
-              <SectionEyebrow>Frequently asked questions</SectionEyebrow>
-              <div className="space-y-4">
-                {faqs.map((item, index) => (
-                  <FAQItem key={item.q} item={item} index={index} />
-                ))}
-              </div>
-            </div>
-
-            <div className="relative rounded-[1.8rem] border border-black/10 bg-[#fff7e2] p-6 shadow-sm sm:rounded-[2.25rem] sm:p-8">
-              <svg className="absolute right-6 top-6 h-16 w-24" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d={doodles.arrow} stroke="#111827" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">What happens next</p>
-              <h2 className="mt-3 max-w-md text-3xl font-semibold tracking-tight">A simple booking flow that feels easy.</h2>
-              <div className="mt-6 space-y-4">
-                {[
-                  "Book your ABA Clarity Session",
-                  "Share where you are in the process",
-                  "Get a simple plan and the right questions to ask",
-                  "Decide whether you want deeper support after the call",
-                ].map((item, index) => (
-                  <div key={item} className="flex items-start gap-4 rounded-[1.4rem] bg-white px-4 py-4 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
-                      {index + 1}
-                    </div>
-                    <p className="pt-1 text-sm font-medium text-slate-800">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal delay={320}>
-        <section id="booking" className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-slate-900 p-6 text-white shadow-2xl sm:rounded-[2.5rem] sm:p-12">
-            <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-600 opacity-30 blur-3xl" />
-            <div className="absolute -bottom-16 left-8 h-40 w-40 rounded-full bg-yellow-300 opacity-20 blur-3xl" />
-
-            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-              <div>
-                <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/55">Booking</p>
-                <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl [font-family:Georgia,serif]">
-                  Start with one calm, clear conversation.
-                </h2>
-                <p className="mt-5 max-w-2xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-                  Book the ABA Clarity Session to talk through your child’s needs, where you are in the process, and your next best step. From there, families can stay at the one-call level or move into guided setup and ongoing support.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3 text-sm text-white/75">
-                  {[
-                    "ABA Clarity Session",
-                    "Guided Setup",
-                    "Monthly Support",
-                  ].map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-[1.6rem] bg-white p-5 text-slate-900 shadow-xl sm:rounded-[2rem] sm:p-6">
-                <p className="text-sm text-slate-500">Book your call</p>
-                <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-black/10 bg-slate-50 p-2 shadow-inner">
-                  <div className="flex items-center justify-between border-b border-black/10 px-3 py-2 text-xs text-slate-500">
-                    <span>Calendly embed placeholder</span>
-                    <span>60 min</span>
-                  </div>
-                  <div className="flex h-[320px] items-center justify-center rounded-[1rem] bg-[linear-gradient(135deg,#ffffff,#eef5ff)] px-5 text-center text-sm text-slate-500">
-                    Replace this card with your real Calendly inline embed for a premium booking experience.
-                  </div>
-                </div>
-
-                <form className="mt-4 space-y-3">
-                  <input className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl" placeholder="Parent name" />
-                  <input className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl" placeholder="Email address" />
-                  <input className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl" placeholder="Phone number" />
-                  <select className="w-full rounded-xl border border-black/10 px-4 py-3 text-slate-600 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl">
-                    <option>What support do you need?</option>
-                    <option>ABA Clarity Session</option>
-                    <option>Guided Setup</option>
-                    <option>Monthly Support</option>
-                  </select>
-                  <textarea
-                    className="min-h-[120px] w-full rounded-xl border border-black/10 px-4 py-3 outline-none transition duration-300 focus:border-slate-400 focus:shadow-md sm:rounded-2xl"
-                    placeholder="Tell us a little about your child and where you are in the process"
-                  />
-                  <button className="group relative w-full overflow-hidden rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:rounded-2xl">
-                    <span className="pointer-events-none absolute inset-y-0 left-[-35%] w-[32%] -skew-x-12 bg-white/20 transition duration-700 group-hover:left-[110%]" />
-                    <span className="relative inline-flex items-center justify-center gap-2">
-                      Request an Intro Call
-                      <span className="transition duration-300 group-hover:translate-x-1">→</span>
-                    </span>
-                  </button>
-                </form>
-                <p className="mt-3 text-xs leading-5 text-slate-500">
-                  Replace this form with Calendly, Tally, Typeform, or your preferred booking software.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <a
-        href="#booking"
-        className="fixed bottom-4 left-4 right-4 z-50 rounded-full bg-slate-900 px-6 py-3 text-center text-sm font-semibold text-white shadow-2xl transition duration-300 hover:-translate-y-0.5 md:hidden"
-      >
-        Book a Call
-      </a>
+        </div>
+      </div>
     </div>
-  );
-}
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="eyebrow">
+        <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
+        </svg>
+        <p>How it works</p>
+      </div>
+
+      <div class="cards-3">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>Start with clarity</h3>
+          <p>We learn about your child, your goals, and where you are in the process so the next step feels calmer and more clear.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>Know what actually matters</h3>
+          <p>We explain ABA in plain English, help you compare providers, and show you what to ask before you commit.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>Move forward with support</h3>
+          <p>You leave with a simple action plan, more confidence, and the option for deeper support if you want help beyond the first call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="offers">
+    <div class="container">
+      <div class="eyebrow">
+        <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
+        </svg>
+        <p>Offers and pricing</p>
+      </div>
+
+      <div class="section-copy">
+        <h2>Start with one focused session, then choose the level of support you need.</h2>
+        <p style="margin-top:20px;">Most families do not need more information. They need someone to tell them what actually matters. This pricing ladder keeps the first step simple while giving you room to offer deeper support later.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="offer-card featured" style="position:relative;">
+          <div class="tag">Start here</div>
+          <div class="meta">ABA Clarity Session</div>
+          <div class="price">$250</div>
+          <p style="margin-top:16px;">A focused first step for families who feel overwhelmed and want expert guidance before choosing a provider.</p>
+          <div class="stack">
+            <div class="stack-item"><span class="bullet"></span>60-minute consult</div>
+            <div class="stack-item"><span class="bullet"></span>Plain-English guidance</div>
+            <div class="stack-item"><span class="bullet"></span>Questions to ask providers</div>
+            <div class="stack-item"><span class="bullet"></span>1-page next-step plan</div>
+          </div>
+        </div>
+
+        <div class="offer-card" style="position:relative;">
+          <div class="tag">Most support</div>
+          <div class="meta">Guided Setup</div>
+          <div class="price">$1,000+</div>
+          <p style="margin-top:16px;">A deeper done-with-you package for families comparing providers, reviewing recommendations, and making a final decision.</p>
+          <div class="stack">
+            <div class="stack-item"><span class="bullet"></span>Provider comparison support</div>
+            <div class="stack-item"><span class="bullet"></span>Treatment plan review</div>
+            <div class="stack-item"><span class="bullet"></span>Red flag guidance</div>
+            <div class="stack-item"><span class="bullet"></span>Decision support through setup</div>
+          </div>
+        </div>
+
+        <div class="offer-card" style="position:relative;">
+          <div class="tag">Ongoing care</div>
+          <div class="meta">Monthly Support</div>
+          <div class="price">$150/mo</div>
+          <p style="margin-top:16px;">Ongoing support for families who want a trusted expert in their corner as questions come up over time.</p>
+          <div class="stack">
+            <div class="stack-item"><span class="bullet"></span>Monthly check-ins</div>
+            <div class="stack-item"><span class="bullet"></span>Questions between meetings</div>
+            <div class="stack-item"><span class="bullet"></span>Help during transitions</div>
+            <div class="stack-item"><span class="bullet"></span>Confidence as needs change</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why-us">
+    <div class="container two-col">
+      <div class="card">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Why families come to us</p>
+        <h2 style="margin-top:12px;">Because this is a big decision, and it should not feel like guesswork.</h2>
+        <p style="margin-top:20px;">Guiding Steps ABA is not trying to be another clinic. We are the calm, trusted layer above the noise. Families come to us when they want clarity, perspective, and support before they commit.</p>
+
+        <div class="cards-3" style="margin-top:26px;">
+          <div class="soft-card">
+            <h3>Not a clinic</h3>
+            <p style="margin-top:12px;">We do not push a provider. We help you make a confident decision that feels right for your child and family.</p>
+          </div>
+          <div class="soft-card">
+            <h3>Calm, clear, human</h3>
+            <p style="margin-top:12px;">Families do not need more jargon. They need someone who can explain what matters in a way that feels grounded and supportive.</p>
+          </div>
+          <div class="soft-card">
+            <h3>The trusted layer</h3>
+            <p style="margin-top:12px;">Think of us as the advisor families wish they had before the first intake call, not after they already feel stuck.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dark-card">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Early growth plan</p>
+        <div class="dark-list">
+          <div>Support for Austin-area families navigating ABA for the first time</div>
+          <div>Referral-friendly for clinics, pediatricians, and parent communities</div>
+          <div>Available for parent education, provider questions, and early meeting support</div>
+        </div>
+        <div style="margin-top:20px;background:rgba(255,255,255,0.1);border-radius:24px;padding:20px;">
+          <strong style="display:block;font-size:18px;">Built for referrals, trust, and parent peace of mind.</strong>
+          <p style="margin-top:10px;">This section helps the site feel bigger than a single call. It shows families, clinics, and referral partners exactly where you fit in the process.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container full-wrap">
+      <div style="text-align:center;margin-bottom:24px;">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Educational content is part of the trust engine. Teach first. Then the right families will come to you.</p>
+      </div>
+
+      <div class="cards-4">
+        <div class="list-card"><p>Things parents do not realize about ABA</p><p>Future Reel or blog topic</p></div>
+        <div class="list-card"><p>Red flags when choosing a provider</p><p>Future Reel or blog topic</p></div>
+        <div class="list-card"><p>What I would ask if this were my child</p><p>Future Reel or blog topic</p></div>
+        <div class="list-card"><p>How many hours are appropriate and why more is not always better</p><p>Future Reel or blog topic</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="questions">
+    <div class="container">
+      <div class="eyebrow">
+        <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 19C43 6 76 4 113 7C152 10 186 12 216 16" stroke="#ff6f61" stroke-width="6" stroke-linecap="round" />
+        </svg>
+        <p>Questions that matter</p>
+      </div>
+
+      <div class="questions-grid">
+        <div class="question-panel">
+          <h3>Questions to ask providers</h3>
+          <div class="question-list">
+            <div>What happens if an RBT does not show up to session?</div>
+            <div>How many clients does each BCBA oversee?</div>
+            <div>Are sessions led by an RBT, a BCBA, or both?</div>
+            <div>How much parent involvement is expected?</div>
+            <div>Do you prioritize assent and reinforcement-based care?</div>
+            <div>Do you offer make-up days?</div>
+            <div>Can services happen in home, clinic, school, or community settings?</div>
+            <div>Do you support collaboration with OT and speech?</div>
+            <div>Can you work on daily living skills?</div>
+          </div>
+        </div>
+
+        <div class="question-panel">
+          <h3>Questions families often have</h3>
+          <div class="question-list">
+            <div>What do I need to do to get started?</div>
+            <div>What will my child be doing all day?</div>
+            <div>How many hours are appropriate?</div>
+            <div>How many therapists will work with my child?</div>
+            <div>What happens if we go on vacation?</div>
+            <div>Should we choose home, clinic, school, or community services?</div>
+            <div>What can ABA help with and what can it not do?</div>
+            <div>What is the purpose of ABA?</div>
+            <div>Can ABA be applied across the lifespan?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container full-wrap">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow">
+            <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
+            </svg>
+            <p>About your guide</p>
+          </div>
+
+          <h2>Hi, I’m [Her Name].</h2>
+          <div class="about-text">
+            <p>I’m a Board Certified Behavior Analyst with over 7 years of experience working with children and families across home, clinic, and community settings.</p>
+            <p>I’ve seen firsthand how overwhelming it can feel for parents trying to navigate ABA for the first time. There are a lot of options, a lot of terminology, and not always a lot of clarity.</p>
+            <p>I started Guiding Steps ABA to help families feel more informed, more confident, and more supported when making decisions about their child’s care.</p>
+            <p>My goal is simple: help you understand what you’re hearing, know what to ask, and feel confident in the path you choose.</p>
+          </div>
+        </div>
+
+        <div class="about-card-shell">
+          <div class="about-card-inner">
+            <div class="photo-note">
+              <div class="photo-placeholder"></div>
+              <div class="photo-meta">
+                <div>
+                  <strong style="display:block;font-size:14px;">[Her Name], BCBA</strong>
+                  <span style="font-size:12px;color:var(--muted);">Add a warm professional headshot here</span>
+                </div>
+                <span class="photo-dot"></span>
+              </div>
+            </div>
+            <p class="helper" style="margin-top:16px;">Replace this framed placeholder with her real photo, credentials, service area, and a short note about the settings she has worked in.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container full-wrap">
+      <div style="text-align:center;margin-bottom:24px;">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Most parents do not realize what to look for until it is too late. We help you get it right the first time.</p>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="quote-card">
+          <p>“We had no idea where to start. Every provider sounded the same, and we were scared of choosing wrong. After one call, everything felt clearer.”</p>
+          <p style="margin-top:18px;font-size:14px;">— Parent, Austin TX</p>
+        </div>
+        <div class="quote-card">
+          <p>“Having someone on our side during provider calls changed everything. Questions we would have never thought to ask were brought up.”</p>
+          <p style="margin-top:18px;font-size:14px;">— Parent</p>
+        </div>
+        <div class="quote-card">
+          <p>“Before this, we felt overwhelmed and unsure. After working together, we felt confident in our decision.”</p>
+          <p style="margin-top:18px;font-size:14px;">— Parent of a 5-year-old</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-grid">
+      <div class="faq-box">
+        <div class="eyebrow">
+          <svg width="94" height="24" viewBox="0 0 230 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16C44 7 83 5 122 8C161 11 194 14 226 20" stroke="#2f6df6" stroke-width="6" stroke-linecap="round" />
+          </svg>
+          <p>Frequently asked questions</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item active">
+            <button class="faq-question" type="button">
+              <strong>Who is this for?</strong>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Families who are new to ABA, overwhelmed by provider options, or unsure whether their current fit is the right one.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <strong>Do you provide direct ABA therapy?</strong>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Guiding Steps ABA is focused on education, advocacy, and helping families navigate the process of finding the right provider and support plan.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <strong>Can you join provider calls with us?</strong>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">Yes. That is one of the most valuable parts of the service for many families, especially in the early stages.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <strong>What if we already have a provider?</strong>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">We can still help you ask better questions, evaluate fit, and prepare for transitions or new decisions.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-box">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">What happens next</p>
+        <h3 style="font-size:40px;line-height:1.05;letter-spacing:-.03em;margin-top:10px;">A simple booking flow that feels easy.</h3>
+        <div class="next-steps">
+          <div class="next-step"><div class="step-badge">1</div><div>Book your ABA Clarity Session</div></div>
+          <div class="next-step"><div class="step-badge">2</div><div>Share where you are in the process</div></div>
+          <div class="next-step"><div class="step-badge">3</div><div>Get a simple plan and the right questions to ask</div></div>
+          <div class="next-step"><div class="step-badge">4</div><div>Decide whether you want deeper support after the call</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="booking">
+    <div class="container booking-wrap">
+      <div class="blur-book-a"></div>
+      <div class="blur-book-b"></div>
+
+      <div class="booking-grid">
+        <div>
+          <p style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Booking</p>
+          <h2 style="margin-top:10px;">Start with one calm, clear conversation.</h2>
+          <p style="margin-top:20px;">Book the ABA Clarity Session to talk through your child’s needs, where you are in the process, and your next best step. From there, families can stay at the one-call level or move into guided setup and ongoing support.</p>
+
+          <div class="chip-row">
+            <div class="chip">ABA Clarity Session</div>
+            <div class="chip">Guided Setup</div>
+            <div class="chip">Monthly Support</div>
+          </div>
+        </div>
+
+        <div class="booking-card">
+          <p style="font-size:14px;">Book your call</p>
+          <div class="cal-box">
+            <div class="cal-top">
+              <span>Calendly embed placeholder</span>
+              <span>60 min</span>
+            </div>
+            <div class="cal-main">Replace this card with your real Calendly inline embed for a premium booking experience.</div>
+          </div>
+
+          <form class="form">
+            <label class="field"><input type="text" placeholder="Parent name" /></label>
+            <label class="field"><input type="email" placeholder="Email address" /></label>
+            <label class="field"><input type="tel" placeholder="Phone number" /></label>
+            <label class="field">
+              <select>
+                <option>What support do you need?</option>
+                <option>ABA Clarity Session</option>
+                <option>Guided Setup</option>
+                <option>Monthly Support</option>
+              </select>
+            </label>
+            <label class="field"><textarea placeholder="Tell us a little about your child and where you are in the process"></textarea></label>
+            <button class="btn btn-dark" type="button">Request an Intro Call</button>
+          </form>
+
+          <p class="helper">Replace this form with Calendly, Tally, Typeform, or your preferred booking software.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a class="mobile-cta show-mobile" href="#booking">Book a Call</a>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach((button) => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isActive = item.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach((faq) => faq.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
