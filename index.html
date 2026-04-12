@@ -152,6 +152,11 @@
       padding: 32px 0 24px;
     }
 
+    .hero-copy,
+    .hero-illustration {
+      min-height: 0;
+    }
+
     .hero-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
@@ -822,12 +827,16 @@
     }
 
     @media (max-width: 640px) {
+      html, body {
+        min-height: 100%;
+      }
+
       .container {
         width: min(var(--max), calc(100% - 16px));
       }
 
       .topbar {
-        padding: 12px 0;
+        padding: 10px 0 8px;
       }
 
       .topbar-inner {
@@ -857,11 +866,16 @@
       }
 
       .hero {
-        padding: 14px 0 8px;
+        padding: 8px 0 6px;
+        min-height: calc(100svh - 86px);
+        display: flex;
+        align-items: stretch;
       }
 
       .hero-grid {
-        gap: 12px;
+        gap: 10px;
+        min-height: 100%;
+        align-content: start;
       }
 
       .eyebrow {
@@ -893,8 +907,16 @@
         gap: 0;
       }
 
+      .hero-copy .eyebrow,
+      .hero-copy h1,
+      .hero-copy .subhead,
+      .hero-copy .hero-actions,
+      .hero-copy .proof-row {
+        max-width: 100%;
+      }
+
       .hero-actions {
-        margin-top: 14px;
+        margin-top: 12px;
         gap: 8px;
         align-items: stretch;
       }
@@ -911,7 +933,7 @@
       .proof-row {
         grid-template-columns: 1fr;
         gap: 8px;
-        margin-top: 14px;
+        margin-top: 12px;
       }
 
       .proof-chip {
@@ -1008,18 +1030,20 @@
       }
 
       .hero-illustration {
-        padding: 12px;
-        min-height: 520px;
+        padding: 10px;
+        min-height: 50svh;
+        max-height: 58svh;
       }
 
       .hero-chat {
         width: 100%;
-        min-height: 496px;
+        min-height: 100%;
+        height: 100%;
         border-radius: 28px;
       }
 
-      .chat-top {
-        padding: 12px 12px 10px;
+            .chat-top {
+        padding: 10px 12px 9px;
       }
 
       .chat-avatar {
@@ -1031,25 +1055,25 @@
         font-size: 13px;
       }
 
-      .chat-body {
-        padding: 14px 10px 12px;
-        gap: 8px;
+            .chat-body {
+        padding: 12px 10px 10px;
+        gap: 7px;
       }
 
-      .chat-bubble {
-        max-width: 92%;
-        padding: 12px 14px;
-        font-size: 16px;
-        line-height: 1.28;
-        border-radius: 20px;
+            .chat-bubble {
+        max-width: 90%;
+        padding: 11px 13px;
+        font-size: 15px;
+        line-height: 1.24;
+        border-radius: 18px;
       }
 
-      .chat-bubble.short,
+            .chat-bubble.short,
       .chat-bubble.medium,
       .chat-bubble.long,
       .chat-bubble.reply,
       .chat-bubble.cta {
-        max-width: 88%;
+        max-width: 82%;
       }
 
       .chat-input {
@@ -1081,9 +1105,13 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-      .footer {
+            .footer {
         padding: 16px 0 28px;
         font-size: 13px;
+      }
+
+      .section:first-of-type {
+        padding-top: 14px;
       }
     }
   </style>
