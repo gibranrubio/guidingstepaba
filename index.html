@@ -644,123 +644,20 @@
     .chat-bubble.cta {
       align-self: flex-end;
       position: relative;
-      padding: 12px 16px;
-      background: #0f172a;
+      padding: 14px 22px;
+      background: rgba(15, 23, 42, 0.94);
       color: #ffffff;
-      border: 1px solid rgba(15,23,42,0.9);
-      border-bottom-right-radius: 10px;
-      box-shadow: 0 10px 22px rgba(15,23,42,0.2);
+      border-radius: 999px;
+      border: 0;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.16);
       cursor: pointer;
-      overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .chat-bubble.cta::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      /* much subtler highlight so it doesn't wash text */
-      background: radial-gradient(120px 40px at 65% 20%, rgba(255,255,255,0.18), transparent 60%);
-      pointer-events: none;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
     .chat-bubble.cta:hover {
       transform: translateY(-1px);
-      /* keep text readable on hover */
-      background: #0b1220; /* slightly darker than base */
-      box-shadow: 0 14px 28px rgba(15,23,42,0.26);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
     }
-
-    .chat-bubble.cta::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      /* much subtler highlight so it doesn't wash text */
-      background: radial-gradient(120px 40px at 65% 20%, rgba(255,255,255,0.18), transparent 60%);
-      pointer-events: none;
-    }
-
-    .chat-bubble.cta:hover {
-      transform: translateY(-1px);
-      /* keep text readable on hover */
-      background: #0b1220; /* slightly darker than base */
-      box-shadow: 0 14px 28px rgba(15,23,42,0.26);
-    }
-
-    .chat-bubble.cta::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      /* much subtler highlight so it doesn't wash text */
-      background: radial-gradient(120px 40px at 65% 20%, rgba(255,255,255,0.18), transparent 60%);
-      pointer-events: none;
-    }
-
-    
-
-    
-
-    
-
-    /* RIGHT (blue) bubbles */
-    .chat-bubble.right {
-      align-self: flex-end;
-      position: relative;
-      background: #0f172a;
-      color: #ffffff;
-      border: 1px solid rgba(15,23,42,0.9);
-      border-bottom-right-radius: 10px;
-      box-shadow: 0 8px 18px rgba(15,23,42,0.18);
-      overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .chat-bubble.right::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(120px 40px at 70% 20%, rgba(255,255,255,0.55), transparent 60%);
-      pointer-events: none;
-    }
-
-    .chat-bubble.right::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(120px 40px at 70% 20%, rgba(255,255,255,0.45), transparent 60%);
-      pointer-events: none;
-    }
-
-    
-
-    
-
-    
-
-    .chat-bubble.reply::before {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.02));
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    
-
-    .chat-bubble.reply > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    
-
-    
-
-    
-
-    
 
     .chat-bubble.cta a {
       color: #ffffff;
@@ -768,20 +665,43 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      position: relative;
-      z-index: 1;
+      gap: 10px;
       white-space: nowrap;
     }
 
     .chat-bubble.cta svg {
-      width: 18px;
-      height: 18px;
-      flex: 0 0 auto;
+      width: 16px;
+      height: 16px;
+      transition: transform 0.25s ease;
     }
 
-    .chat-bubble.cta.show {
-      animation: bubbleCardIn 0.5s ease forwards;
+    .chat-bubble.cta:hover svg,
+.chat-bubble.cta a:hover svg {
+  animation: arrowBounce 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes arrowBounce {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+  70% { transform: translateX(4px); }
+  100% { transform: translateX(5px); }
+}
+
+    .chat-bubble.right {
+      align-self: flex-end;
+      position: relative;
+      padding: 14px 22px;
+      background: rgba(15, 23, 42, 0.94);
+      color: #ffffff;
+      border-radius: 999px;
+      border: 0;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.16);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .chat-bubble.right:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
     }
 
     @keyframes bubbleCardIn {
