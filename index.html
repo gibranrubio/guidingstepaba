@@ -3,586 +3,298 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guiding Steps ABA</title>
+  <title>Guiding Steps ABA — Find the right ABA setting for your child.</title>
   <meta name="description" content="A calm 30 or 60 minute consultation to help parents choose the best ABA therapy setting for their child and ask the right questions before they commit." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg: #f4f7fb;
-      --surface: rgba(255, 255, 255, 0.66);
-      --surface-strong: rgba(255, 255, 255, 0.82);
-      --surface-soft: rgba(255, 255, 255, 0.52);
-      --text: #0f172a;
-      --muted: #667085;
-      --line: rgba(255, 255, 255, 0.42);
-      --line-strong: rgba(148, 163, 184, 0.26);
-      --primary: #0f172a;
-      --accent: rgba(238, 242, 255, 0.8);
-      --accent-text: #334155;
-      --shadow: 0 18px 60px rgba(15, 23, 42, 0.12);
-      --glass-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 18px;
-      --max: 1120px;
+      --ink: #0a0a0a;
+      --ink-soft: #1a1a1a;
+      --ink-mid: #2e2e2e;
+      --paper: #f5f2ee;
+      --white: #ffffff;
+      --muted: #6b6b6b;
+      --muted-light: #9a9a9a;
+      --rule: rgba(0,0,0,0.1);
+      --rule-light: rgba(255,255,255,0.12);
+      --accent: #c8a86b;
+      --accent-soft: rgba(200,168,107,0.12);
+      --green: #2d7a4f;
+      --green-dot: #3ec87a;
+      --radius: 18px;
+      --radius-lg: 28px;
+      --max: 1160px;
+      --serif: 'Fraunces', Georgia, serif;
+      --sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 15%, rgba(191, 219, 254, 0.7), transparent 26%),
-        radial-gradient(circle at 85% 10%, rgba(254, 240, 138, 0.45), transparent 22%),
-        radial-gradient(circle at 78% 78%, rgba(221, 214, 254, 0.42), transparent 24%),
-        linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--paper);
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
 
     .container {
-      width: min(var(--max), calc(100% - 32px));
+      width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
     }
 
-    .topbar {
-      padding: 18px 0;
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 16px;
-      background: rgba(255,255,255,0.42);
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: 999px;
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 0;
+      background: rgba(245,242,238,0.88);
       backdrop-filter: blur(22px) saturate(160%);
       -webkit-backdrop-filter: blur(22px) saturate(160%);
-      box-shadow: var(--glass-shadow);
+      border-bottom: 1px solid var(--rule);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .brand-badge {
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(15, 23, 42, 0.92);
-      color: white;
-      font-weight: 700;
-      flex: 0 0 auto;
-      font-size: 14px;
-      box-shadow: 0 6px 18px rgba(15,23,42,0.18);
-    }
-
-    .brand-copy strong,
-    .brand-copy span { display: block; }
-    .brand-copy strong { font-size: 14px; line-height: 1.2; }
-    .brand-copy span { font-size: 12px; color: var(--muted); line-height: 1.35; }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .nav a:hover { color: var(--text); }
-
-    .btn,
-    button.btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 0;
-      border-radius: 999px;
-      padding: 14px 22px;
-      font-weight: 700;
-      font-size: 15px;
-      cursor: pointer;
-      transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
-      text-align: center;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
-    }
-
-    .btn-primary {
-      background: rgba(15, 23, 42, 0.94);
-      color: white;
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.16);
-    }
-
-    .btn svg {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.25s ease;
-    }
-
-    .btn:hover svg {
-      transform: translateX(3px);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.56);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.6);
-      backdrop-filter: blur(18px) saturate(150%);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-    }
-
-    .hero {
-      padding: 32px 0 24px;
-    }
-
-    .hero-copy,
-    .hero-illustration {
-      min-height: 0;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.55);
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,0.58);
-      backdrop-filter: blur(18px) saturate(150%);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-      font-size: 13px;
-      font-weight: 600;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #10b981;
-      flex: 0 0 auto;
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      letter-spacing: -0.03em;
-    }
-
-    h1 {
-      margin-top: 16px;
-      font-size: clamp(42px, 5.2vw, 68px);
-      line-height: 0.98;
-      max-width: 760px;
-    }
-
-    h2 {
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.02;
-    }
-
-    h3 {
-      font-size: 22px;
-      line-height: 1.12;
-    }
-
-    .hero-copy {
-      max-width: 760px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .subhead {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.72;
-      max-width: 680px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-top: 24px;
-    }
-
-    .hero-note {
-      width: 100%;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .proof-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .proof-chip {
-      border: 1px solid rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.5);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      backdrop-filter: blur(18px) saturate(150%);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-      box-shadow: var(--glass-shadow);
-    }
-
-    .proof-chip strong {
-      display: block;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .proof-chip span {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.56);
-      border: 1px solid rgba(255,255,255,0.58);
-      border-radius: var(--radius-xl);
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-      box-shadow: var(--shadow);
-    }
-
-    .offer-card {
-      padding: 24px;
-    }
-
-    .offer-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .label {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.56);
-      color: var(--accent-text);
-      border: 1px solid rgba(255,255,255,0.5);
-      backdrop-filter: blur(16px) saturate(150%);
-      -webkit-backdrop-filter: blur(16px) saturate(150%);
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .price {
-      text-align: right;
-      min-width: 88px;
-    }
-
-    .price strong {
-      display: block;
-      font-size: 30px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .price span {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .offer-copy {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .checklist {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .check {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.5);
-      border: 1px solid rgba(255,255,255,0.52);
-      padding: 13px 14px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text);
-      backdrop-filter: blur(14px) saturate(150%);
-      -webkit-backdrop-filter: blur(14px) saturate(150%);
-    }
-
-    .check-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      background: rgba(236, 253, 243, 0.88);
-      color: #047857;
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      font-weight: 700;
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-
-    .section {
-      padding: 28px 0;
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 20px;
-    }
-
-    .section-head p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.72;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .detail-card,
-    .path-card,
-    .faq-card,
-    .quote-card,
-    .cta-card {
-      padding: 24px;
-    }
-
-    .detail-card p,
-    .path-card p,
-    .faq-card p,
-    .quote-card p,
-    .cta-card p,
-    .faq-answer {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.72;
-    }
-
-    .path-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .quote-card {
-      background: rgba(255,255,255,0.46);
-    }
-
-    .quote-card blockquote {
-      margin: 0;
-      font-size: 28px;
-      line-height: 1.25;
-      letter-spacing: -0.03em;
-      color: var(--text);
-    }
-
-    .quote-meta {
-      margin-top: 14px;
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .faq-item {
-      border: 1px solid rgba(255,255,255,0.52);
-      border-radius: 16px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.42);
-      backdrop-filter: blur(16px) saturate(150%);
-      -webkit-backdrop-filter: blur(16px) saturate(150%);
-    }
-
-    .faq-question {
-      width: 100%;
-      border: 0;
-      background: transparent;
-      text-align: left;
-      padding: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font: inherit;
-      cursor: pointer;
-    }
-
-    .faq-question strong {
-      font-size: 16px;
-      line-height: 1.4;
-    }
-
-    .faq-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.6);
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.74);
-      transition: transform 0.22s ease;
-      font-size: 20px;
-      line-height: 1;
-      flex: 0 0 auto;
-    }
-
-    .faq-item.active .faq-icon { transform: rotate(45deg); }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-      opacity: 0;
-      padding: 0 18px;
-    }
-
-    .faq-item.active .faq-answer {
-      max-height: 240px;
-      opacity: 1;
-      padding: 0 18px 18px;
-    }
-
-    .cta-card {
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
     }
 
-    .cta-actions {
+    .brand {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
       align-items: center;
-      justify-content: flex-end;
+      gap: 11px;
     }
 
-    .footer {
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 15px;
+      flex: 0 0 auto;
+    }
+
+    .brand-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .nav-links {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 24px 0 36px;
-      color: var(--muted);
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
       font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
     }
 
-    .mobile-sticky-cta {
-      display: none;
-    }
+    .nav-links a:hover { color: var(--ink); }
 
-    .hero-illustration {
-      background: linear-gradient(180deg, rgba(255,255,255,0.56) 0%, rgba(255,255,255,0.36) 100%);
-      border: 1px solid rgba(255,255,255,0.62);
-      border-radius: var(--radius-xl);
-      padding: 16px;
-      position: relative;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(28px) saturate(170%);
-      -webkit-backdrop-filter: blur(28px) saturate(170%);
-      min-height: 100%;
-      overflow: hidden;
+    .nav-right {
       display: flex;
-      align-items: stretch;
-      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
 
-    .hero-illustration::before {
-      content: "";
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 4px 18px rgba(10,10,10,0.18);
+    }
+
+    .btn-primary:hover { box-shadow: 0 8px 26px rgba(10,10,10,0.22); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid rgba(0,0,0,0.18);
+    }
+
+    .btn-ghost:hover { background: rgba(0,0,0,0.04); }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: 0 4px 18px rgba(10,10,10,0.14);
+    }
+
+    .btn-white:hover { box-shadow: 0 8px 26px rgba(10,10,10,0.18); }
+
+    .btn svg { width: 15px; height: 15px; flex: 0 0 auto; transition: transform 0.22s ease; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      color: var(--white);
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 18% 12%, rgba(255,255,255,0.9), transparent 26%),
-        radial-gradient(circle at 88% 22%, rgba(191,219,254,0.34), transparent 24%),
-        radial-gradient(circle at 20% 84%, rgba(254,240,138,0.28), transparent 28%);
+        radial-gradient(ellipse 60% 60% at 75% 50%, rgba(200,168,107,0.07), transparent),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(61,200,122,0.04), transparent);
       pointer-events: none;
     }
 
-    .hero-chat {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 410px);
-      max-width: 410px;
-      min-height: 560px;
-      border-radius: 34px;
-      overflow: hidden;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 0;
+      min-height: 100svh;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 80px 60px 80px 0;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--rule-light);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green-dot);
+      flex: 0 0 auto;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 5.8vw, 80px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      max-width: 720px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.56);
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      margin-top: 36px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.6;
+    }
+
+    .hero-chat-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0 40px 40px;
+      position: relative;
+    }
+
+    /* ── ANIMATED CHAT ── */
+    .chat-phone {
+      width: 100%;
+      max-width: 360px;
+      background: #111;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.04);
+      display: flex;
+      flex-direction: column;
+      min-height: 580px;
     }
 
     .chat-top {
-      padding: 14px 16px 12px;
-      border-bottom: 1px solid rgba(148,163,184,0.12);
-      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.84) 100%);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      padding: 20px 18px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
     }
 
-    .chat-status {
+    .chat-status-row {
       display: flex;
       justify-content: center;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 10px;
+      font-size: 11px;
       font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
     }
 
     .chat-header {
@@ -593,853 +305,1013 @@
     }
 
     .chat-avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #bfdbfe, #fde68a);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #a87d3a);
       flex: 0 0 auto;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
     }
 
     .chat-name {
       font-size: 14px;
-      font-weight: 700;
-      color: #334155;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: -0.01em;
     }
 
     .chat-body {
       flex: 1;
-      padding: 18px 14px 14px;
+      padding: 20px 16px 16px;
       display: flex;
       flex-direction: column;
-      gap: 9px;
-      justify-content: flex-start;
+      gap: 8px;
     }
 
     .chat-day {
       align-self: center;
-      font-size: 11px;
-      color: #94a3b8;
-      font-weight: 700;
-      margin: 2px 0 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
     .chat-bubble {
-      max-width: 86%;
+      max-width: 84%;
+      padding: 11px 16px;
+      border-radius: 22px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.4;
       width: fit-content;
-      padding: 14px 16px;
-      border-radius: 24px;
-      font-size: 17px;
-      line-height: 1.32;
-      font-weight: 600;
-      letter-spacing: -0.02em;
       opacity: 0;
-      transform: translateY(8px) scale(0.985);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      transform: translateY(6px);
     }
 
     .chat-bubble.show {
-      animation: bubbleCardIn 0.5s ease forwards;
+      animation: bubbleIn 0.42s cubic-bezier(0.34,1.2,0.64,1) forwards;
     }
 
-    .chat-bubble.short { max-width: 54%; }
-    .chat-bubble.medium { max-width: 66%; }
-    .chat-bubble.long { max-width: 78%; }
-    .chat-bubble.reply { max-width: 70%; }
-    .chat-bubble.cta {
-      align-self: flex-end;
-      position: relative;
-      padding: 14px 22px;
-      background: rgba(15, 23, 42, 0.94);
-      color: #ffffff;
-      border-radius: 999px;
-      border: 0;
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.16);
-      cursor: pointer;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    .chat-bubble.left {
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.82);
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
     }
-
-    .chat-bubble.cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
-    }
-
-    .chat-bubble.cta a {
-      color: #ffffff;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      white-space: nowrap;
-    }
-
-    .chat-bubble.cta svg {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.25s ease;
-    }
-
-    .chat-bubble.cta:hover svg,
-.chat-bubble.cta a:hover svg {
-  animation: arrowBounce 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes arrowBounce {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(6px); }
-  70% { transform: translateX(4px); }
-  100% { transform: translateX(5px); }
-}
 
     .chat-bubble.right {
+      background: var(--white);
+      color: var(--ink);
       align-self: flex-end;
+      font-weight: 600;
+      border-bottom-right-radius: 6px;
+    }
+
+    .chat-bubble.cta-bubble {
+      background: var(--accent);
+      color: var(--ink);
+      align-self: flex-end;
+      font-weight: 700;
+      border-bottom-right-radius: 6px;
+      padding: 13px 20px;
+    }
+
+    .chat-bubble.cta-bubble a {
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-bubble.cta-bubble svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    @keyframes bubbleIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      padding: 20px 0;
+    }
+
+    .trust-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--green);
+      flex: 0 0 auto;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--rule);
+      flex: 0 0 auto;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--white);
+      padding: 80px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: 0 40px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .stat-item:first-child { padding-left: 0; }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 60px;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .stat-num sup {
+      font-size: 30px;
+      vertical-align: super;
+    }
+
+    .stat-label {
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 240px;
+    }
+
+    /* ── PATHS ── */
+    .paths {
+      background: var(--paper);
+      padding: 100px 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: 20px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--muted-light);
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .section-body {
+      margin-top: 16px;
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .paths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 52px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .path-card {
+      background: var(--white);
+      padding: 44px 40px;
       position: relative;
-      padding: 14px 22px;
-      background: rgba(15, 23, 42, 0.94);
-      color: #ffffff;
+      transition: background 0.25s ease;
+    }
+
+    .path-card:hover { background: #fafaf8; }
+
+    .path-num {
+      font-family: var(--serif);
+      font-size: 80px;
+      font-weight: 300;
+      line-height: 1;
+      color: rgba(0,0,0,0.06);
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+
+    .path-tag {
+      display: inline-flex;
+      padding: 5px 12px;
       border-radius: 999px;
-      border: 0;
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.16);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      background: var(--paper);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 16px;
     }
 
-    .chat-bubble.right:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+    .path-card h3 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 14px;
     }
 
-    @keyframes bubbleCardIn {
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    .path-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
     }
 
-    @keyframes fadeInGlass {
-      to { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-    }
-
-    @media (max-width: 1170px) {
-      .nav {
-        display: none;
-      }
-
-      .hero-grid,
-      .two-col,
-      .path-grid,
-      .cta-card {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy {
-        order: 2;
-      }
-
-      .hero-illustration {
-        order: 1;
-        min-height: 70svh;
-      }
-
-      .cta-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .cta-actions {
-        justify-content: flex-start;
-      }
+    .path-arrow {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      transition: gap 0.2s ease;
     }
 
-    @media (max-width: 1170px) and (orientation: portrait) {
-      .topbar {
-        padding: 6px 0 4px;
-      }
+    .path-card:hover .path-arrow { gap: 12px; }
+    .path-arrow svg { width: 14px; height: 14px; }
 
-      .topbar-inner {
-        padding: 8px 10px;
-        gap: 10px;
-        border-radius: 18px;
-      }
+    /* ── WHAT'S INCLUDED ── */
+    .included {
+      background: var(--ink);
+      color: var(--white);
+      padding: 100px 0;
+    }
 
-      .brand {
-        gap: 10px;
-        min-width: 0;
-        flex: 1;
-      }
+    .included-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
 
-      .brand-badge {
-        width: 32px;
-        height: 32px;
-        font-size: 12px;
-      }
+    .included-head .section-label { color: rgba(255,255,255,0.3); }
+    .included-head .section-label::before { background: rgba(255,255,255,0.3); }
 
-      .brand-copy strong {
-        font-size: 13px;
-        white-space: nowrap;
-      }
+    .included-head .section-title { color: var(--white); max-width: none; }
+    .included-head .section-title em { color: var(--accent); }
+    .included-head .section-body { color: rgba(255,255,255,0.46); }
 
-      .brand-copy span {
-        display: none;
-      }
+    .checklist {
+      display: grid;
+      gap: 2px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
 
-      .topbar .btn {
-        padding: 10px 12px;
-        font-size: 12px;
-        min-width: auto;
-      }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 22px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s;
+    }
 
-      .topbar .btn svg {
-        width: 14px;
-        height: 14px;
-      }
+    .check-item:hover { background: rgba(255,255,255,0.07); }
+    .check-item:last-child { border-bottom: none; }
 
-      .hero {
-        padding: 6px 0 12px;
-      }
+    .check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(61,200,122,0.14);
+      color: var(--green-dot);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
 
-            .hero .container {
-        width: calc(100% - 12px);
-      }
+    .check-icon svg { width: 12px; height: 12px; }
 
-      main > .section .container,
-      footer.container {
-        width: min(var(--max), calc(100% - 24px));
-      }
+    .check-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 4px;
+    }
 
-      .hero-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
+    .check-text span {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.5;
+    }
 
-            .hero-copy {
-        order: 2;
-        padding-top: 4px;
-      }
+    /* ── QUOTE ── */
+    .quote-section {
+      background: var(--paper);
+      padding: 100px 0;
+      border-top: 1px solid var(--rule);
+    }
 
-      .hero-copy .eyebrow,
-      .hero-copy h1,
-      .hero-copy .subhead,
-      .hero-copy .hero-actions,
-      .hero-copy .proof-row {
-        max-width: 100%;
-      }
+    .quote-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
 
-            .hero-illustration {
-        order: 1;
-        width: 100%;
-        padding: 8px;
-        min-height: calc(100svh - 64px);
-        height: calc(100svh - 64px);
-        max-height: calc(100svh - 64px);
-        border-radius: 24px;
-      }
+    .quote-big {
+      font-family: var(--serif);
+      font-size: clamp(30px, 3.6vw, 48px);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
 
-      .hero-chat {
-        width: 100%;
-        min-height: 100%;
-        height: 100%;
-        max-width: none;
-        border-radius: 24px;
-      }
+    .quote-big em { font-style: italic; color: var(--muted); }
 
-      .chat-top {
-        padding: 12px 14px 10px;
-      }
+    .quote-attr {
+      margin-top: 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-light);
+    }
 
-      .chat-body {
-        padding: 14px 14px 16px;
-        gap: 10px;
-      }
+    .quote-cta-side .section-label { color: var(--muted-light); }
+    .quote-cta-side .section-label::before { background: var(--muted-light); }
 
-      .chat-bubble {
-        max-width: 88%;
-      }
+    .quote-cta-side p {
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .quote-cta-side .btn {
+      margin-top: 28px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--white);
+      padding: 100px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+    }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      font-family: var(--sans);
+    }
+
+    .faq-btn strong {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .faq-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rule);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      transition: transform 0.25s ease, background 0.25s ease;
+      color: var(--muted);
+    }
+
+    .faq-toggle svg { width: 12px; height: 12px; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.32s ease, padding 0.32s ease;
+    }
+
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    .faq-answer p {
+      padding-bottom: 24px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    /* ── FREE RESOURCE ── */
+    .resource-section {
+      background: var(--paper);
+      padding: 80px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .resource-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 52px 60px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+      border: 1px solid var(--rule);
+    }
+
+    .resource-card .section-label { color: var(--muted-light); }
+    .resource-card .section-label::before { background: var(--muted-light); }
+    .resource-card h3 {
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 12px;
+    }
+
+    .resource-card p {
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 480px;
+    }
+
+    .resource-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .resource-actions .meta {
+      font-size: 12px;
+      color: var(--muted-light);
+    }
+
+    /* ── BIG CTA ── */
+    .cta-section {
+      background: var(--ink);
+      color: var(--white);
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 50% 100%, rgba(200,168,107,0.08), transparent);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(44px, 6vw, 84px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      position: relative;
+    }
+
+    .cta-section h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .cta-section p {
+      margin: 24px auto 0;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.65;
+      max-width: 480px;
+      position: relative;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 36px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      border: 1.5px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--ink-soft);
+      padding: 52px 0 36px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-mark {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,0.5);
+      font-family: var(--serif);
+      font-size: 13px;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── MOBILE STICKY ── */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      left: 12px;
+      right: 12px;
+      z-index: 200;
+    }
+
+    .mobile-cta .btn { width: 100%; font-size: 15px; padding: 16px 24px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; min-height: auto; }
+      .hero-copy { padding: 60px 0 40px; border-right: none; border-bottom: 1px solid var(--rule-light); }
+      .hero-chat-wrap { padding: 40px 0 60px; justify-content: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .stat-item { padding: 0; border-right: none; }
+      .paths-grid { grid-template-columns: 1fr; gap: 2px; }
+      .included-grid { grid-template-columns: 1fr; gap: 48px; }
+      .quote-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+      .resource-card { grid-template-columns: 1fr; gap: 28px; padding: 36px 28px; }
+      .resource-actions { flex-direction: row; justify-content: flex-start; }
+      .trust-inner { flex-wrap: wrap; gap: 12px; }
+      .trust-divider { display: none; }
+      .nav-links { display: none; }
     }
 
     @media (max-width: 640px) {
-      .mobile-sticky-cta {
-        display: flex;
-        position: fixed;
-        left: 12px;
-        right: 12px;
-        bottom: max(12px, env(safe-area-inset-bottom));
-        z-index: 50;
-        padding: 10px 12px;
-        background: rgba(255,255,255,0.72);
-        border: 1px solid rgba(255,255,255,0.82);
-        border-radius: 20px;
-        backdrop-filter: blur(18px) saturate(160%);
-        -webkit-backdrop-filter: blur(18px) saturate(160%);
-        box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
-      }
-
-      .mobile-sticky-cta .btn {
-        width: 100%;
-      }
-
-      body {
-        padding-bottom: 92px;
-      }
-      html,
-      body {
-        min-height: 100%;
-      }
-
-      .container {
-        width: min(var(--max), calc(100% - 24px));
-      }
-
-      .topbar {
-        padding: 8px 0 6px;
-      }
-
-      .topbar-inner {
-        gap: 10px;
-        padding: 10px 12px;
-        border-radius: 20px;
-      }
-
-      .brand {
-        min-width: 0;
-        flex: 1;
-        gap: 10px;
-      }
-
-      .brand-badge {
-        width: 34px;
-        height: 34px;
-        font-size: 13px;
-      }
-
-      .brand-copy strong {
-        font-size: 14px;
-        white-space: nowrap;
-      }
-
-      .brand-copy span {
-        display: none;
-      }
-
-      .nav {
-        display: none;
-      }
-
-      .topbar .btn {
-        padding: 11px 14px;
-        font-size: 13px;
-        flex: 0 0 auto;
-        min-width: auto;
-      }
-
-      .topbar .btn svg {
-        width: 14px;
-        height: 14px;
-      }
-
-      .hero {
-        padding: 8px 0 12px;
-      }
-
-      .hero .container {
-        width: calc(100% - 12px);
-      }
-
-      .hero-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .hero-copy {
-        order: 2;
-        padding-top: 6px;
-      }
-
-      .hero-copy .eyebrow,
-      .hero-copy h1,
-      .hero-copy .subhead,
-      .hero-copy .hero-actions,
-      .hero-copy .proof-row {
-        max-width: 100%;
-      }
-
-      .hero-illustration {
-        order: 1;
-        width: 100%;
-        padding: 8px;
-        min-height: calc(100svh - 72px);
-        height: calc(100svh - 72px);
-        max-height: calc(100svh - 72px);
-        border-radius: 24px;
-      }
-
-      .hero-chat {
-        width: 100%;
-        min-height: 100%;
-        height: 100%;
-        border-radius: 22px;
-      }
-
-      .chat-top {
-        padding: 10px 12px 9px;
-      }
-
-      .chat-status {
-        margin-bottom: 8px;
-      }
-
-      .chat-avatar {
-        width: 30px;
-        height: 30px;
-      }
-
-      .chat-name {
-        font-size: 13px;
-      }
-
-      .chat-body {
-        padding: 10px 10px 12px;
-        gap: 8px;
-      }
-
-      .chat-day {
-        margin: 0 0 2px;
-      }
-
-      .chat-bubble {
-        max-width: 88%;
-        padding: 12px 14px;
-        font-size: 16px;
-        line-height: 1.26;
-        border-radius: 18px;
-      }
-
-      .chat-bubble.short,
-      .chat-bubble.medium,
-      .chat-bubble.long,
-      .chat-bubble.reply,
-      .chat-bubble.cta {
-        max-width: 84%;
-      }
-
-      .eyebrow {
-        font-size: 11px;
-        padding: 8px 11px;
-      }
-
-      h1 {
-        margin-top: 10px;
-        font-size: 34px;
-        line-height: 1.02;
-      }
-
-      h2 {
-        font-size: 30px;
-      }
-
-      h3 {
-        font-size: 20px;
-      }
-
-      .subhead {
-        margin-top: 12px;
-        font-size: 15px;
-        line-height: 1.5;
-      }
-
-      .hero-actions {
-        margin-top: 12px;
-        gap: 8px;
-        align-items: stretch;
-      }
-
-      .hero-actions .btn,
-      .cta-actions .btn {
-        width: 100%;
-      }
-
-      .hero-note {
-        font-size: 13px;
-      }
-
-            .proof-row {
-        display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: 82%;
-        overflow-x: auto;
-        gap: 10px;
-        margin-top: 12px;
-        padding-bottom: 4px;
-        scroll-snap-type: x proximity;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .proof-row::-webkit-scrollbar {
-        display: none;
-      }
-
-      .proof-chip {
-        scroll-snap-align: start;
-      }
-
-            .proof-chip {
-        padding: 16px;
-        border-radius: 18px;
-      }
-
-            .offer-card,
-      .detail-card,
-      .path-card,
-      .faq-card,
-      .quote-card,
-      .cta-card {
-        padding: 20px 16px;
-        border-radius: 22px;
-      }
-
-      .offer-top {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .price {
-        text-align: left;
-      }
-
-      .offer-copy,
-      .detail-card p,
-      .path-card p,
-      .faq-card p,
-      .quote-card p,
-      .cta-card p,
-      .faq-answer,
-      .section-head p {
-        font-size: 14px;
-        line-height: 1.6;
-      }
-
-      .checklist {
-        gap: 8px;
-        margin-top: 14px;
-      }
-
-      .check {
-        gap: 10px;
-        padding: 11px 12px;
-        font-size: 13px;
-        line-height: 1.45;
-        border-radius: 14px;
-      }
-
-      .check-icon {
-        width: 20px;
-        height: 20px;
-        font-size: 12px;
-      }
-
-            .section {
-        padding: 24px 0;
-      }
-
-            .section-head {
-        margin-bottom: 16px;
-      }
-
-      .two-col,
-      .path-grid {
-        gap: 12px;
-      }
-
-      .quote-card blockquote {
-        font-size: 24px;
-        line-height: 1.22;
-      }
-
-      .faq-list {
-        gap: 10px;
-      }
-
-            .faq-question {
-        padding: 16px;
-      }
-
-      .faq-question strong {
-        font-size: 15px;
-      }
-
-            .faq-answer {
-        padding: 0 16px;
-      }
-
-            .faq-item.active .faq-answer {
-        padding: 0 16px 16px;
-      }
-
-            .footer {
-        padding: 18px 0 30px;
-        font-size: 13px;
-      }
-
-      .label {
-        margin-bottom: 10px;
-      }
-
-      .cta-actions {
-        width: 100%;
-      }
-
-      .cta-actions .btn {
-        width: 100%;
-      }
+      body { padding-bottom: 80px; }
+      .mobile-cta { display: flex; }
+      .hero h1 { font-size: 42px; }
+      .hero-copy { padding: 40px 0 32px; }
+      .hero-chat-wrap { padding: 28px 0 44px; }
+      .chat-phone { min-height: 460px; }
+      .stats { padding: 52px 0; }
+      .stats-grid { grid-template-columns: 1fr; gap: 28px; }
+      .stat-num { font-size: 52px; }
+      .paths { padding: 60px 0; }
+      .included { padding: 60px 0; }
+      .quote-section { padding: 60px 0; }
+      .faq-section { padding: 60px 0; }
+      .cta-section { padding: 72px 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <div class="brand">
-        <div class="brand-badge">G</div>
-        <div class="brand-copy">
-          <strong>Guiding Steps ABA</strong>
-          <span>Independent consultation for parents choosing ABA care</span>
-        </div>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <div class="brand-mark">G</div>
+        <div class="brand-name">Guiding Steps ABA</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#paths">Who it helps</a></li>
+        <li><a href="#included">What's included</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-right">
+        <a class="btn btn-ghost" href="https://form.typeform.com/to/gNFdI2mX">Email Emma</a>
+        <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
-
-      <nav class="nav">
-        <a href="#who">Who it helps</a>
-        <a href="https://form.typeform.com/to/gNFdI2mX">What’s included</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-
-      <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
-  </header>
+  </nav>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-dot"></span>Independent guidance for two parent moments</div>
-          <h1>Find the best ABA therapy setting for your child before you commit to the wrong fit.</h1>
-          <p class="subhead">A calm 30 or 60 minute consultation to help you understand what setting makes the most sense, what questions to ask providers, and what to do next with confidence.</p>
-
-          <div class="hero-actions" id="book">
-            <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-            <a class="btn btn-secondary" href="https://form.typeform.com/to/gNFdI2mX">See what’s included</a>
-            <div class="hero-note">30 or 60 minutes • Zoom • built for first-time parents and families rethinking a bad ABA experience</div>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Independent ABA consultation for parents</div>
+        <h1>Find the <em>right fit</em> before you commit to the wrong one.</h1>
+        <p class="hero-sub">A calm 30 or 60 minute consultation to help you understand what ABA setting makes the most sense for your child — and what to ask providers before moving forward.</p>
+        <div class="hero-actions">
+          <a class="btn btn-white" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="btn btn-outline-white" href="https://form.typeform.com/to/gNFdI2mX">Download the free guide</a>
+        </div>
+        <p class="hero-note">30 or 60 minutes · Zoom · Built for first-time parents & families rethinking a bad ABA experience</p>
+      </div>
+      <div class="hero-chat-wrap">
+        <div class="chat-phone">
+          <div class="chat-top">
+            <div class="chat-status-row">Messages</div>
+            <div class="chat-header">
+              <div class="chat-avatar"></div>
+              <div class="chat-name">Taylor</div>
+            </div>
           </div>
-
-          <div class="proof-row">
-            <div class="proof-chip">
-              <strong>Newly diagnosed</strong>
-              <span>For parents trying to understand where to begin and what setting to choose.</span>
-            </div>
-            <div class="proof-chip">
-              <strong>Current ABA feels off</strong>
-              <span>For parents wondering if their child is in the wrong place or getting the wrong support.</span>
-            </div>
-            <div class="proof-chip">
-              <strong>Questions answered clearly</strong>
-              <span>Plain-English guidance, provider questions, and a clearer next step.</span>
-            </div>
+          <div class="chat-body">
+            <div class="chat-day">Today</div>
+            <div class="chat-bubble left" id="b1">What do I do next?</div>
+            <div class="chat-bubble left" id="b2">What does Autism mean?</div>
+            <div class="chat-bubble left" id="b3">What is ABA therapy?</div>
+            <div class="chat-bubble left" id="b4">What's the difference between in-clinic, in-home and school?</div>
+            <div class="chat-bubble left" id="b5">How can I best support my child?</div>
+            <div class="chat-bubble left" id="b6">Can you help me figure this out?</div>
+            <div class="chat-bubble right" id="b7">Absolutely.</div>
+            <div class="chat-bubble cta-bubble" id="b8"><a href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-illustration" aria-label="Parent texting Taylor questions">
-          <div class="hero-chat">
-            <div class="chat-top">
-              <div class="chat-status">Messages</div>
-              <div class="chat-header">
-                <div class="chat-avatar"></div>
-                <div class="chat-name">Taylor</div>
-              </div>
+  <!-- ── TRUST BAR ── -->
+  <section class="trust-bar">
+    <div class="container trust-inner">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9a12.02 12.02 0 00-.382-3.016z"/></svg>
+        Independent — no provider affiliations
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        30 or 60 minute sessions
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.069A1 1 0 0121 8.82V15.18a1 1 0 01-1.447.89L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        Zoom · no travel required
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Built for first-time parents
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <p class="stat-label">Clear paths — whether you're just starting out or already in ABA that feels wrong.</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30<sup>min</sup></div>
+        <p class="stat-label">The minimum time it takes to leave with a clear direction and better provider questions.</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <p class="stat-label">Honest, outside perspective — no referral fees, no provider relationships, no agenda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PATHS ── -->
+  <section class="paths" id="paths">
+    <div class="container">
+      <div class="section-label">Who it helps</div>
+      <h2 class="section-title">Built for two very specific <em>parent situations.</em></h2>
+      <p class="section-body">You don't need a giant service menu. You need one thoughtful conversation that helps you decide what kind of support is actually right for your child.</p>
+
+      <div class="paths-grid">
+        <div class="path-card">
+          <div class="path-num">01</div>
+          <div class="path-tag">New or first-time parent</div>
+          <h3>Navigating a new diagnosis and don't know where to start.</h3>
+          <p>You may be trying to understand what ABA is, what settings exist, how to compare providers, and what matters most before starting services.</p>
+          <a class="path-arrow" href="https://form.typeform.com/to/gNFdI2mX">Book the call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="path-card">
+          <div class="path-num">02</div>
+          <div class="path-tag">Already in ABA</div>
+          <h3>Your child is in ABA but it doesn't feel like a good fit.</h3>
+          <p>You may be second-guessing the current setting, provider communication, supervision, or overall quality and want a clear outside perspective.</p>
+          <a class="path-arrow" href="https://form.typeform.com/to/gNFdI2mX">Book the call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INCLUDED ── -->
+  <section class="included" id="included">
+    <div class="container included-grid">
+      <div class="included-head">
+        <div class="section-label">What's included</div>
+        <h2 class="section-title">Not every child needs the <em>same setup.</em></h2>
+        <p class="section-body">Some children benefit more from in-home services. Others do better in a clinic or with school-based support. This consultation helps you think through real pros, tradeoffs, and fit — rather than choosing based on whatever one provider sells.</p>
+        <a class="btn btn-white" style="margin-top:32px;" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="checklist">
+          <div class="check-item">
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div class="check-text">
+              <strong>Setting comparison (in-home, clinic, school)</strong>
+              <span>Real pros and tradeoffs for each — explained in plain English for your child's specific situation.</span>
             </div>
-            <div class="chat-body">
-              <div class="chat-day">Today</div>
-              <div class="chat-bubble left bubble short" id="b1">What do I do next?</div>
-              <div class="chat-bubble left bubble medium" id="b2">What does Autism mean?</div>
-              <div class="chat-bubble left bubble short" id="b3">What is ABA therapy?</div>
-              <div class="chat-bubble left bubble long" id="b4">What is the difference between in clinic, in home and school?</div>
-              <div class="chat-bubble left bubble medium" id="b5">How can I best support my child?</div>
-              <div class="chat-bubble left bubble medium" id="b6">Can you help me figure this out?</div>
-              <div class="chat-bubble right bubble reply" id="b7">Absolutely!</div>
-              <div class="chat-bubble right bubble cta bubble" id="b8"><a href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+          </div>
+          <div class="check-item">
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div class="check-text">
+              <strong>Provider questions you should be asking</strong>
+              <span>Supervision, staffing consistency, parent involvement, goals, communication — what to ask before you commit.</span>
+            </div>
+          </div>
+          <div class="check-item">
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div class="check-text">
+              <strong>Current fit assessment (if already in ABA)</strong>
+              <span>Walk through what feels off and get a clear outside perspective on whether to stay, switch, or reassess.</span>
+            </div>
+          </div>
+          <div class="check-item">
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div class="check-text">
+              <strong>A clear next step — not just more noise</strong>
+              <span>Leave knowing whether to start, stay, switch, or slow down to reassess.</span>
+            </div>
+          </div>
+          <div class="check-item">
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div class="check-text">
+              <strong>ABA Setting Guide (free download)</strong>
+              <span>The same decision chart used in every consultation — yours to keep and reference anytime.</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="who">
-      <div class="container">
-        <div class="section-head">
-          <h2>Built for two very specific parent situations.</h2>
-          <p>You do not need a giant service menu. You need a thoughtful conversation that helps you decide what kind of support is best for your child right now.</p>
+  <!-- ── QUOTE ── -->
+  <section class="quote-section">
+    <div class="container quote-wrap">
+      <div>
+        <p class="quote-big">"Parents often don't need more noise. They need <em>one clear conversation</em> before making a big decision."</p>
+        <p class="quote-attr">— Guiding Steps ABA</p>
+      </div>
+      <div class="quote-cta-side">
+        <div class="section-label">Simple next step</div>
+        <p>Choose 30 minutes for a focused conversation and fast sense of direction. Choose 60 minutes to unpack your child's history, current concerns, and provider options in depth.</p>
+        <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq-section" id="faq">
+    <div class="container faq-grid">
+      <div>
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Common questions parents ask.</h2>
+        <p style="margin-top:14px; font-size:15px; font-weight:300; color:var(--muted); line-height:1.7;">This consultation is useful both before ABA starts and after a family has had a disappointing experience.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-btn" type="button">
+            <strong>Can this help if my child is newly diagnosed and I don't know where to start?</strong>
+            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Yes. It's designed to help first-time parents understand the landscape, compare settings, and know what questions matter before they commit to a provider.</p></div>
         </div>
-
-        <div class="path-grid">
-          <div class="card path-card">
-            <div class="label">Path one</div>
-            <h3>New or first-time parent navigating a diagnosis</h3>
-            <p style="margin-top:12px;">You may be trying to understand what ABA even is, what settings exist, how to compare providers, and what matters most before starting services.</p>
-          </div>
-
-          <div class="card path-card">
-            <div class="label">Path two</div>
-            <h3>Your child is already in ABA, but it does not feel like a good fit</h3>
-            <p style="margin-top:12px;">You may be second-guessing the current setting, provider communication, supervision, or overall quality of the experience and want a clearer outside perspective.</p>
-          </div>
+        <div class="faq-item">
+          <button class="faq-btn" type="button">
+            <strong>Can this help if my child is already in ABA and I'm unhappy with it?</strong>
+            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Yes — this is one of the main reasons families reach out. We can talk through what feels off, whether the current setting is right, and what to ask before deciding to stay or switch.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" type="button">
+            <strong>What kinds of provider questions will I get help with?</strong>
+            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Questions around supervision, staffing consistency, parent involvement, goals, communication, setting, and whether the provider's model actually matches your child's needs.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" type="button">
+            <strong>Do you have any provider affiliations or referral relationships?</strong>
+            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>No. Guiding Steps ABA is fully independent with no referral fees or provider relationships. The only goal is helping you make the best decision for your child.</p></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="includes">
-      <div class="container two-col">
-        <div class="card detail-card">
-          <div class="label">What we help you figure out</div>
-          <h3>Not every child needs the same ABA setup.</h3>
-          <p style="margin-top:12px;">Some children may benefit more from in-home services. Others may do better in a clinic or with school-based support. This consultation helps you think through the real pros, tradeoffs, and fit for your child rather than choosing based on whatever one provider sells.</p>
-        </div>
-
-        <div class="card detail-card">
-          <div class="label">What you walk away with</div>
-          <h3>More clarity and better provider questions.</h3>
-          <p style="margin-top:12px;">You should leave the conversation with a stronger understanding of what to look for, what to ask, and whether your next step should be starting, staying, switching, or slowing down to reassess.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container two-col">
-        <div class="card quote-card">
-          <div class="label">Why this exists</div>
-          <blockquote>Parents often do not need more noise. They need one clear conversation before making a big decision.</blockquote>
-          <div class="quote-meta">Guiding Steps ABA is designed to be that conversation.</div>
-        </div>
-
-        <div class="card detail-card">
-          <div class="label">Simple next step</div>
-          <h3>Book the consultation that matches your situation.</h3>
-          <p style="margin-top:12px;">Choose 30 minutes if you want a focused conversation and a fast sense of direction. Choose 60 minutes if you want more time to unpack your child’s history, current concerns, and provider options in depth.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container card faq-card">
-        <div class="section-head" style="margin-bottom:0; max-width:none;">
-          <h2>Common questions parents ask.</h2>
-          <p>This consultation is meant to be useful both before ABA starts and after a family has already had a disappointing experience.</p>
-        </div>
-
-        <div class="faq-list">
-          <div class="faq-item active">
-            <button class="faq-question" type="button">
-              <strong>Can this help if my child is newly diagnosed and I do not know where to start?</strong>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">Yes. It is designed to help first-time parents understand the landscape, compare settings, and know what questions matter before they commit to a provider.</div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <strong>Can this help if my child is already in ABA and I am unhappy with it?</strong>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">Yes. This is one of the main reasons families reach out. We can talk through what feels off, whether the current setting is right, and what to ask before deciding to stay or switch.</div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <strong>What kinds of provider questions will I get help with?</strong>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">Questions around supervision, staffing consistency, parent involvement, goals, communication, setting, and whether the provider’s model actually matches your child’s needs.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container card cta-card">
+  <!-- ── FREE RESOURCE ── -->
+  <section class="resource-section">
+    <div class="container">
+      <div class="resource-card">
         <div>
-          <h3>Ready for one clear conversation?</h3>
-          <p style="margin-top:10px; max-width:640px;">Book a 30 or 60 minute consultation to understand the best ABA setting for your child and what to ask before moving forward.</p>
+          <div class="section-label">Free resource</div>
+          <h3>Download the ABA Setting Guide</h3>
+          <p>A simple, parent-friendly version of the exact decision chart used in every consultation. Use it to think through your child's needs and come into the call with more clarity.</p>
         </div>
-        <div class="cta-actions">
-          <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-          <a class="btn btn-secondary" href="https://form.typeform.com/to/gNFdI2mX">Email Emma</a>
+        <div class="resource-actions">
+          <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Download the guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <span class="meta">PDF · 2 min read</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="container card" style="padding:28px; text-align:center;">
-        <div class="label">Free resource</div>
-        <h2 style="margin-top:10px;">Download the ABA Setting Guide</h2>
-        <p style="margin:12px auto 0; max-width:640px; color:var(--muted);">
-          A simple, parent-friendly version of the exact decision chart we use in our consultations. 
-          Use it to think through your child’s needs and come into the call with more clarity.
-        </p>
-
-        <div style="margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-          <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">
-            Download the guide
-          </a>
-          <span style="font-size:13px; color:var(--muted); align-self:center;">
-            PDF • 2 min read
-          </span>
-        </div>
-
-        <p style="margin-top:14px; font-size:13px; color:var(--muted);">
-          You’ll also get the exact questions to ask providers before choosing care.
-        </p>
+  <!-- ── BIG CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready for one <em>clear</em> conversation?</h2>
+      <p>Book a 30 or 60 minute consultation to understand the best ABA setting for your child and what to ask before moving forward.</p>
+      <div class="cta-btns">
+        <a class="btn btn-white" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a class="btn btn-outline-white" href="https://form.typeform.com/to/gNFdI2mX">Email Emma</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
-
-  <div class="mobile-sticky-cta">
-    <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-  </div>
-
-  <footer class="container footer">
-    <div>Guiding Steps ABA</div>
-    <a href="https://form.typeform.com/to/gNFdI2mX">emma@guidingstepsaba.com</a>
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-mark">G</div>
+        <span class="footer-name">Guiding Steps ABA</span>
+      </div>
+      <div class="footer-links">
+        <a href="#paths">Who it helps</a>
+        <a href="#included">What's included</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://form.typeform.com/to/gNFdI2mX">emma@guidingstepsaba.com</a>
+      </div>
+      <span class="footer-copy">© 2025 Guiding Steps ABA</span>
+    </div>
   </footer>
 
+  <!-- ── MOBILE STICKY ── -->
+  <div class="mobile-cta">
+    <a class="btn btn-primary" href="https://form.typeform.com/to/gNFdI2mX">Book a call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+  </div>
+
   <script>
-    document.querySelectorAll('.faq-question').forEach((button) => {
-      button.addEventListener('click', () => {
-        const item = button.parentElement;
-        const list = item.parentElement;
-        const isActive = item.classList.contains('active');
-        list.querySelectorAll('.faq-item').forEach((faq) => faq.classList.remove('active'));
-        if (!isActive) item.classList.add('active');
+    // Chat animation
+    const delays = [400,1100,1800,2500,3200,3900,4700,5300];
+    ['b1','b2','b3','b4','b5','b6','b7','b8'].forEach((id,i) => {
+      setTimeout(() => {
+        document.getElementById(id)?.classList.add('show');
+      }, delays[i]);
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
       });
     });
-    const baseDelay = 450;
-    const step = 900;
-
-    // first messages
-    ['b1','b2','b3','b4','b5','b6'].forEach((id,i)=>{
-      setTimeout(()=>{
-        document.getElementById(id)?.classList.add('show');
-      }, baseDelay + i * step);
-    });
-
-    // slight hesitation before reply
-    setTimeout(()=>{
-      document.getElementById('b7')?.classList.add('show');
-    }, baseDelay + 6 * step + 500);
-
-    // CTA after reply
-    setTimeout(()=>{
-      document.getElementById('b8')?.classList.add('show');
-    }, baseDelay + 6 * step + 1000);
   </script>
 </body>
 </html>
